@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shayan Ali Jalbani - Laravel Developer building fast, scalable and thoughtful digital products." />
+  <meta name="description" content="Shayan Ali Jalbani — Laravel developer in Sehwan, Pakistan. TALL stack, Filament, Livewire. Building school systems, CMS tools, and product-ready admin panels." />
   <title>Shayan Ali Jalbani | Laravel Developer</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -37,15 +37,14 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       background:
         radial-gradient(circle at 15% 10%, rgba(223, 255, 63, 0.2), transparent 23rem),
         radial-gradient(circle at 90% 30%, rgba(255, 104, 72, 0.12), transparent 28rem),
         #f4f0e8;
+      font-family: "DM Sans", sans-serif;
     }
 
     .grid-paper {
@@ -55,10 +54,7 @@
       background-size: 28px 28px;
     }
 
-    .noise {
-      position: relative;
-    }
-
+    .noise { position: relative; }
     .noise::after {
       content: "";
       position: absolute;
@@ -69,80 +65,82 @@
       mix-blend-mode: multiply;
     }
 
-    .marquee {
-      animation: marquee 22s linear infinite;
-    }
-
+    .marquee { animation: marquee 28s linear infinite; }
     @keyframes marquee {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
 
-    .float {
-      animation: float 5s ease-in-out infinite;
-    }
-
+    .float { animation: float 5s ease-in-out infinite; }
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(-4deg); }
       50% { transform: translateY(-12px) rotate(-1deg); }
     }
 
-    .reveal {
-      animation: reveal 0.8s both;
-    }
-
+    .reveal { animation: reveal 0.8s both; }
     @keyframes reveal {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    ::selection {
-      color: #171717;
-      background: #dfff3f;
+    ::selection { color: #171717; background: #dfff3f; }
+
+    :focus-visible {
+      outline: 3px solid #dfff3f;
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .marquee, .float, .reveal { animation: none; }
     }
   </style>
 </head>
 
 <body
-  x-data="{ mobileOpen: false, activeFilter: 'All', darkMode: false }"
+  x-data="{
+    mobileOpen: false,
+    activeFilter: 'All',
+    darkMode: localStorage.getItem('theme') === 'dark',
+    toggleTheme() {
+      this.darkMode = !this.darkMode;
+      localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
+    }
+  }"
   :class="{ 'bg-ink text-paper': darkMode }"
   class="noise overflow-x-hidden text-ink transition-colors duration-500"
 >
+  <a href="#top" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-acid focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:text-ink">Skip to content</a>
+
   <header class="fixed left-0 right-0 top-0 z-50 border-b-2 border-ink/10 bg-paper/85 backdrop-blur-xl">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
       <a href="#top" class="group flex items-center gap-3">
-        <span class="grid h-10 w-10 place-items-center border-2 border-ink bg-acid font-display text-xl font-bold shadow-brutalSm transition group-hover:translate-x-1 group-hover:translate-y-1 group-hover:shadow-none">
-          S
-        </span>
-        <span class="font-display text-lg font-bold tracking-tight">
-          Shayan<span class="text-ember">.</span>
-        </span>
+        <span class="grid h-10 w-10 place-items-center border-2 border-ink bg-acid font-display text-xl font-bold shadow-brutalSm transition group-hover:translate-x-1 group-hover:translate-y-1 group-hover:shadow-none">S</span>
+        <span class="font-display text-lg font-bold tracking-tight">Shayan<span class="text-ember">.</span></span>
       </a>
 
       <div class="hidden items-center gap-8 md:flex">
         <a href="#work" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Work</a>
+        <a href="#now" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Now</a>
         <a href="#stack" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Stack</a>
         <a href="#about" class="font-mono text-xs uppercase tracking-widest hover:text-ember">About</a>
         <a href="#contact" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Contact</a>
-
         <button
-          @click="darkMode = !darkMode"
+          type="button"
+          @click="toggleTheme()"
           class="border-2 border-ink px-3 py-2 font-mono text-xs uppercase tracking-widest shadow-brutalSm transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
         >
           <span x-show="!darkMode">Night</span>
-          <span x-show="darkMode">Day</span>
+          <span x-show="darkMode" x-cloak>Day</span>
         </button>
       </div>
 
       <button
+        type="button"
         @click="mobileOpen = !mobileOpen"
         class="border-2 border-ink p-2 md:hidden"
+        :aria-expanded="mobileOpen.toString()"
+        aria-controls="mobile-menu"
         aria-label="Toggle menu"
       >
         <span class="block h-0.5 w-6 bg-ink"></span>
@@ -151,12 +149,17 @@
       </button>
     </nav>
 
-    <div x-show="mobileOpen" x-transition class="border-t-2 border-ink/10 bg-paper px-5 py-5 md:hidden">
+    <div id="mobile-menu" x-show="mobileOpen" x-transition x-cloak class="border-t-2 border-ink/10 bg-paper px-5 py-5 md:hidden">
       <div class="flex flex-col gap-5 font-mono text-xs uppercase tracking-widest">
         <a @click="mobileOpen = false" href="#work">Work</a>
+        <a @click="mobileOpen = false" href="#now">Now</a>
         <a @click="mobileOpen = false" href="#stack">Stack</a>
         <a @click="mobileOpen = false" href="#about">About</a>
         <a @click="mobileOpen = false" href="#contact">Contact</a>
+        <button type="button" @click="toggleTheme()" class="w-fit border-2 border-ink px-3 py-2">
+          <span x-show="!darkMode">Night</span>
+          <span x-show="darkMode">Day</span>
+        </button>
       </div>
     </div>
   </header>
@@ -166,36 +169,35 @@
       <div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
         <div class="reveal">
           <div class="mb-6 inline-flex items-center gap-2 border-2 border-ink bg-acid px-3 py-2 font-mono text-xs font-semibold uppercase tracking-widest shadow-brutalSm">
-            <span class="h-2 w-2 animate-pulse rounded-full bg-ember"></span>
-            Available for a great team
+            <span class="h-2 w-2 animate-pulse rounded-full bg-ember" aria-hidden="true"></span>
+            Open to teams that ship real products
           </div>
 
-          <h1 class="max-w-5xl font-display text-[clamp(3.7rem,10vw,9rem)] font-bold leading-[0.83] tracking-[-0.08em]">
-            Backend<br />
-            <span class="text-ember">with a</span><br />
-            point of view.
+          <h1 class="max-w-5xl font-display text-[clamp(3.2rem,9vw,8.2rem)] font-bold leading-[0.86] tracking-[-0.08em]">
+            Laravel<br />
+            <span class="text-ember">systems</span><br />
+            that last.
           </h1>
 
           <p class="mt-8 max-w-xl text-lg leading-relaxed text-muted md:text-xl">
-            I’m <strong class="text-ink">Shayan Ali Jalbani</strong>, a Laravel developer who turns complex ideas into clean, reliable and scalable digital products.
+            I’m <strong class="text-ink">Shayan Ali Jalbani</strong>, a Laravel developer in Sehwan, Pakistan. I build role-aware admin panels, public portals, and CMS tools with the TALL stack and Filament — then cover them with tests.
           </p>
 
           <div class="mt-9 flex flex-col gap-4 sm:flex-row">
-            <a href="#work" class="inline-flex items-center justify-center gap-3 border-2 border-ink bg-ink px-6 py-4 font-display font-bold text-paper shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
-              Explore my work
-              <span class="text-acid">↘</span>
+            <a href="#work" class="inline-flex items-center justify-center gap-3 border-2 border-ink bg-ink px-6 py-4 font-display font-bold text-paper shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none active:scale-96">
+              View work
+              <span class="text-acid" aria-hidden="true">↘</span>
             </a>
-
-            <a href="mailto:shayan@example.com?subject=Laravel Developer Opportunity" class="inline-flex items-center justify-center gap-3 border-2 border-ink bg-paper px-6 py-4 font-display font-bold shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
-              Let’s talk
-              <span class="text-ember">↗</span>
+            <a href="#contact" class="inline-flex items-center justify-center gap-3 border-2 border-ink bg-paper px-6 py-4 font-display font-bold shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none active:scale-96">
+              Get in touch
+              <span class="text-ember" aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
 
         <div class="relative mx-auto w-full max-w-md lg:ml-auto">
           <div class="absolute -right-3 -top-7 z-10 rotate-6 border-2 border-ink bg-ember px-4 py-3 font-mono text-xs font-bold uppercase tracking-widest shadow-brutalSm">
-            Laravel / PHP
+            Laravel / Filament
           </div>
 
           <div class="relative aspect-square rotate-3 border-2 border-ink bg-ink p-5 shadow-brutal">
@@ -206,12 +208,9 @@
               </div>
 
               <div class="relative">
-                <div class="absolute -left-3 -top-12 font-display text-[8rem] font-bold leading-none text-acid/15">
-                  SAJ
-                </div>
-
+                <div class="absolute -left-3 -top-12 font-display text-[8rem] font-bold leading-none text-acid/15" aria-hidden="true">SAJ</div>
                 <div class="relative">
-                  <p class="font-mono text-sm text-ember">FULL STACK ENGINEER</p>
+                  <p class="font-mono text-sm text-ember">LARAVEL DEVELOPER</p>
                   <h2 class="mt-3 font-display text-5xl font-bold leading-[0.9] tracking-[-0.06em]">
                     Build it<br />
                     to last.
@@ -222,26 +221,24 @@
               <div class="flex items-end justify-between">
                 <div>
                   <div class="mb-2 h-2 w-20 bg-acid"></div>
-                  <p class="font-mono text-xs text-paper/60">Karachi / Pakistan</p>
+                  <p class="font-mono text-xs text-paper/60">Sehwan / Pakistan</p>
                 </div>
-                <div class="float grid h-16 w-16 place-items-center rounded-full border-2 border-acid text-3xl text-acid">
-                  ✳
-                </div>
+                <div class="float grid h-16 w-16 place-items-center rounded-full border-2 border-acid text-3xl text-acid" aria-hidden="true">✳</div>
               </div>
             </div>
           </div>
 
           <div class="absolute -bottom-9 -left-8 hidden rotate-[-9deg] border-2 border-ink bg-acid px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest shadow-brutalSm sm:block">
-            Clean code, bold ideas
+            Tests first, then ship
           </div>
         </div>
       </div>
     </section>
 
-    <div class="overflow-hidden border-y-2 border-ink bg-ember py-4">
+    <div class="overflow-hidden border-y-2 border-ink bg-ember py-4" aria-hidden="true">
       <div class="marquee flex w-max items-center gap-8 font-display text-2xl font-bold uppercase tracking-tight">
-        <span>Laravel</span><span>✦</span><span>PHP</span><span>✦</span><span>Product thinking</span><span>✦</span>
-        <span>Laravel</span><span>✦</span><span>PHP</span><span>✦</span><span>Product thinking</span><span>✦</span>
+        <span>Laravel</span><span>✦</span><span>Livewire</span><span>✦</span><span>Filament</span><span>✦</span><span>Blade</span><span>✦</span><span>Tailwind</span><span>✦</span><span>Alpine</span><span>✦</span><span>Pest</span><span>✦</span>
+        <span>Laravel</span><span>✦</span><span>Livewire</span><span>✦</span><span>Filament</span><span>✦</span><span>Blade</span><span>✦</span><span>Tailwind</span><span>✦</span><span>Alpine</span><span>✦</span><span>Pest</span><span>✦</span>
       </div>
     </div>
 
@@ -251,20 +248,22 @@
           <div>
             <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-ember">Selected work</p>
             <h2 class="font-display text-5xl font-bold tracking-[-0.06em] md:text-7xl">
-              Things I’ve<br /><span class="text-ember">made useful.</span>
+              Things I’ve<br /><span class="text-ember">shipped.</span>
             </h2>
           </div>
           <p class="max-w-sm text-muted">
-            A selection of product-minded builds focused on the parts that matter: speed, clarity, maintainability and real business value.
+            Real repos only. Built for schools, ops teams, and anyone who needs an admin that non-technical people can actually use.
           </p>
         </div>
 
         <div class="mb-10 flex flex-wrap gap-3">
-          <template x-for="filter in ['All', 'Laravel', 'Frontend', 'Systems']" :key="filter">
+          <template x-for="filter in ['All', 'Laravel', 'Shipped']" :key="filter">
             <button
+              type="button"
               @click="activeFilter = filter"
               :class="activeFilter === filter ? 'bg-ink text-paper' : 'bg-paper text-ink'"
               class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest shadow-brutalSm transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+              :aria-pressed="(activeFilter === filter).toString()"
               x-text="filter"
             ></button>
           </template>
@@ -272,114 +271,90 @@
 
         <div class="grid gap-8 md:grid-cols-2">
           <article
-            x-show="activeFilter === 'All' || activeFilter === 'Laravel' || activeFilter === 'Systems'"
+            x-show="activeFilter === 'All' || activeFilter === 'Laravel' || activeFilter === 'Shipped'"
             class="group border-2 border-ink bg-ink p-4 text-paper shadow-brutal transition hover:-translate-y-2"
           >
-            <div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden bg-[#243c2c] p-7">
-              <div class="absolute -right-8 -top-10 h-48 w-48 rounded-full border-[24px] border-acid/80"></div>
-              <div class="absolute bottom-12 right-16 h-24 w-24 rotate-45 bg-ember"></div>
+            <div class="relative flex min-h-[320px] flex-col justify-between overflow-hidden bg-[#243c2c] p-7">
+              <div class="absolute -right-8 -top-10 h-48 w-48 rounded-full border-[24px] border-acid/80" aria-hidden="true"></div>
+              <div class="absolute bottom-12 right-16 h-24 w-24 rotate-45 bg-ember" aria-hidden="true"></div>
 
               <div class="relative flex items-center justify-between font-mono text-xs text-acid">
-                <span>01 / OPERATIONS</span>
-                <span>2025</span>
+                <span>01 / EDUCATION</span>
+                <span>SHIPPED</span>
               </div>
 
               <div class="relative">
-                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-paper/60">Laravel · FilamentPHP · Livewire</p>
-                <h3 class="font-display text-4xl font-bold leading-none">Atlas<br />Admin Suite</h2>
+                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-paper/60">Laravel 13 · Filament v5 · Livewire 4</p>
+                <h3 class="font-display text-4xl font-bold leading-none">School<br />Management</h3>
               </div>
             </div>
 
-            <div class="flex items-start justify-between gap-5 px-2 pb-1 pt-6">
-              <p class="max-w-sm text-sm leading-relaxed text-paper/65">
-                A fast internal operations platform for teams managing users, workflows, permissions and reporting.
+            <div class="px-2 pb-1 pt-6">
+              <p class="max-w-md text-sm leading-relaxed text-paper/70">
+                Role-separated system for admins, teachers, and parents, plus a public portal that needs no account. Attendance and exams by class, CSV in/out, EasyPaisa / JazzCash, fail-closed scoping, 255 passing tests.
               </p>
-              <span class="text-3xl text-acid transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+              <div class="mt-5 flex flex-wrap gap-4 font-mono text-xs uppercase tracking-widest">
+                <a href="https://myschool.wasmer.app/" target="_blank" rel="noreferrer" class="underline underline-offset-4 hover:text-acid">Live demo</a>
+                <a href="https://github.com/shayanalibuilds/school-management" target="_blank" rel="noreferrer" class="underline underline-offset-4 hover:text-acid">Source</a>
+              </div>
             </div>
           </article>
 
           <article
-            x-show="activeFilter === 'All' || activeFilter === 'Frontend'"
-            class="group border-2 border-ink bg-acid p-4 shadow-brutal transition hover:-translate-y-2"
-          >
-            <div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden bg-[#e8d9c0] p-7 text-ink">
-              <div class="absolute -bottom-16 -right-10 h-64 w-64 rounded-full border-[28px] border-ember"></div>
-              <div class="absolute right-24 top-16 h-28 w-28 rounded-full bg-ink"></div>
-
-              <div class="relative flex items-center justify-between font-mono text-xs">
-                <span>02 / COMMERCE</span>
-                <span>2024</span>
-              </div>
-
-              <div class="relative">
-                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-ink/60">Vue · Alpine · Tailwind</p>
-                <h3 class="font-display text-4xl font-bold leading-none">Nook<br />Marketplace</h3>
-              </div>
-            </div>
-
-            <div class="flex items-start justify-between gap-5 px-2 pb-1 pt-6">
-              <p class="max-w-sm text-sm leading-relaxed text-ink/65">
-                A lightweight marketplace experience built around simple browsing, thoughtful states and a frictionless checkout.
-              </p>
-              <span class="text-3xl text-ember transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-            </div>
-          </article>
-
-          <article
-            x-show="activeFilter === 'All' || activeFilter === 'Laravel' || activeFilter === 'Systems'"
+            x-show="activeFilter === 'All' || activeFilter === 'Laravel'"
             class="group border-2 border-ink bg-ember p-4 shadow-brutal transition hover:-translate-y-2"
           >
-            <div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden bg-[#f5ebdd] p-7 text-ink">
-              <div class="absolute right-8 top-12 grid grid-cols-5 gap-2 opacity-80">
+            <div class="relative flex min-h-[320px] flex-col justify-between overflow-hidden bg-[#f5ebdd] p-7 text-ink">
+              <div class="absolute right-8 top-12 grid grid-cols-5 gap-2 opacity-80" aria-hidden="true">
                 <template x-for="i in 25" :key="i">
                   <span class="h-3 w-3 rounded-full bg-ink"></span>
                 </template>
               </div>
 
               <div class="relative flex items-center justify-between font-mono text-xs">
-                <span>03 / CONTENT</span>
-                <span>2024</span>
+                <span>02 / PUBLISHING</span>
+                <span>IN PROGRESS</span>
               </div>
 
               <div class="relative">
-                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-ink/60">Laravel · Blade · MySQL</p>
-                <h3 class="font-display text-4xl font-bold leading-none">Field<br />Notes CMS</h3>
+                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-ink/60">Laravel · Livewire Volt · Flux</p>
+                <h3 class="font-display text-4xl font-bold leading-none">Content<br />Management</h3>
               </div>
             </div>
 
-            <div class="flex items-start justify-between gap-5 px-2 pb-1 pt-6">
-              <p class="max-w-sm text-sm leading-relaxed text-paper">
-                A flexible publishing system for teams that need editorial control without slowing down the people doing the work.
+            <div class="px-2 pb-1 pt-6">
+              <p class="max-w-md text-sm leading-relaxed text-ink">
+                CMS for small marketing and ops teams — create, edit, schedule, and publish pages and posts. Admin built so non-technical people can run it.
               </p>
-              <span class="text-3xl text-ink transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+              <div class="mt-5 flex flex-wrap gap-4 font-mono text-xs uppercase tracking-widest">
+                <a href="https://github.com/shayanalibuilds/content-management" target="_blank" rel="noreferrer" class="underline underline-offset-4">Source</a>
+              </div>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
 
-          <article
-            x-show="activeFilter === 'All' || activeFilter === 'Frontend'"
-            class="group border-2 border-ink bg-paper p-4 shadow-brutal transition hover:-translate-y-2"
-          >
-            <div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden bg-[#19242c] p-7 text-paper">
-              <div class="absolute bottom-[-40px] left-[-30px] h-56 w-56 rounded-full border-[20px] border-ember"></div>
-              <div class="absolute right-12 top-12 h-28 w-28 rotate-12 border-2 border-acid"></div>
+    <section id="now" class="border-y-2 border-ink bg-paper px-5 py-24 lg:px-8 lg:py-36">
+      <div class="mx-auto max-w-7xl">
+        <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-ember">Building now</p>
+        <h2 class="mb-12 font-display text-5xl font-bold tracking-[-0.06em] md:text-7xl">
+          On the<br /><span class="text-ember">bench.</span>
+        </h2>
 
-              <div class="relative flex items-center justify-between font-mono text-xs text-acid">
-                <span>04 / PRODUCT</span>
-                <span>2023</span>
-              </div>
+        <div class="grid gap-6 md:grid-cols-2">
+          <article class="border-2 border-ink bg-acid p-7 shadow-brutalSm">
+            <p class="font-mono text-xs uppercase tracking-widest">In progress</p>
+            <h3 class="mt-4 font-display text-3xl font-bold tracking-[-0.04em]">Content Management</h3>
+            <p class="mt-4 text-ink/75">Livewire 4 Volt + Flux UI admin, SQLite default, Pest / Larastan / Pint / Rector on every push.</p>
+            <a href="https://github.com/shayanalibuilds/content-management" target="_blank" rel="noreferrer" class="mt-6 inline-block font-mono text-xs uppercase tracking-widest underline underline-offset-4">Open repo</a>
+          </article>
 
-              <div class="relative">
-                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-paper/60">React · Next.js · APIs</p>
-                <h3 class="font-display text-4xl font-bold leading-none">Signal<br />Dashboard</h3>
-              </div>
-            </div>
-
-            <div class="flex items-start justify-between gap-5 px-2 pb-1 pt-6">
-              <p class="max-w-sm text-sm leading-relaxed text-muted">
-                A responsive analytics dashboard that makes dense information feel calm, clear and actionable.
-              </p>
-              <span class="text-3xl text-ember transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-            </div>
+          <article class="border-2 border-ink bg-ink p-7 text-paper shadow-brutalSm">
+            <p class="font-mono text-xs uppercase tracking-widest text-acid">In progress</p>
+            <h3 class="mt-4 font-display text-3xl font-bold tracking-[-0.04em]">This portfolio</h3>
+            <p class="mt-4 text-paper/70">Single-file Tailwind + Alpine site. Honest work, Sehwan on the card, ready for any product team.</p>
+            <a href="https://github.com/shayanalibuilds/portfolio" target="_blank" rel="noreferrer" class="mt-6 inline-block font-mono text-xs uppercase tracking-widest text-acid underline underline-offset-4">Open repo</a>
           </article>
         </div>
       </div>
@@ -389,16 +364,17 @@
       <div class="mx-auto max-w-7xl">
         <div class="grid gap-16 lg:grid-cols-[.8fr_1.2fr]">
           <div>
-            <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-acid">My toolkit</p>
+            <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-acid">Toolkit</p>
             <h2 class="font-display text-5xl font-bold leading-[0.92] tracking-[-0.06em] md:text-7xl">
               The stack<br />
-              behind the<br />
-              <span class="text-ember">thinking.</span>
+              I ship<br />
+              <span class="text-ember">with.</span>
             </h2>
+            <p class="mt-6 max-w-sm text-paper/60">Used on school-management and content-management — not a wish list.</p>
           </div>
 
           <div class="grid content-start gap-0 sm:grid-cols-2">
-            <template x-for="(skill, index) in ['LARAVEL', 'PHP', 'ALPINE', 'NEXT.JS', 'REACT', 'VUE', 'INERTIA', 'BLADE', 'LIVEWIRE', 'TAILWIND', 'FILAMENTPHP']" :key="skill">
+            <template x-for="(skill, index) in ['LARAVEL', 'PHP', 'LIVEWIRE', 'FILAMENTPHP', 'BLADE', 'ALPINE', 'TAILWIND', 'INERTIA', 'VUE', 'REACT', 'NEXT.JS']" :key="skill">
               <div class="group border-b border-paper/20 py-5" :class="index % 2 === 0 ? 'sm:mr-8' : ''">
                 <div class="flex items-center justify-between">
                   <span class="font-display text-xl font-bold transition group-hover:text-acid" x-text="skill"></span>
@@ -415,15 +391,15 @@
       <div class="mx-auto max-w-7xl">
         <div class="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div class="relative">
-            <div class="absolute -left-5 -top-5 h-full w-full border-2 border-ember"></div>
+            <div class="absolute -left-5 -top-5 h-full w-full border-2 border-ember" aria-hidden="true"></div>
             <div class="relative border-2 border-ink bg-acid p-8 shadow-brutal md:p-12">
               <p class="font-mono text-xs uppercase tracking-[0.3em]">A little context</p>
               <p class="mt-14 font-display text-4xl font-bold leading-tight tracking-[-0.05em] md:text-5xl">
-                I care about the line between “it works” and “it feels right.”
+                I care about the line between “it works” and “a school admin can run it.”
               </p>
               <div class="mt-14 flex items-end justify-between">
-                <span class="font-mono text-xs uppercase tracking-widest">Shayan Ali Jalbani</span>
-                <span class="text-5xl">↘</span>
+                <span class="font-mono text-xs uppercase tracking-widest">Sehwan, Sindh · Pakistan</span>
+                <span class="text-5xl" aria-hidden="true">↘</span>
               </div>
             </div>
           </div>
@@ -437,53 +413,53 @@
 
             <div class="mt-8 space-y-5 text-lg leading-relaxed text-muted">
               <p>
-                I build full-stack experiences with a strong Laravel and PHP foundation, while staying comfortable across modern frontend ecosystems.
+                I ship full-stack Laravel products: Filament and Livewire when the team needs a fast, reliable admin; Blade when a public page should stay simple; Inertia or Vue when the UI has to feel like an app.
               </p>
               <p>
-                My best work happens when engineering is close to the problem: understanding the user, simplifying the workflow and making the system dependable.
+                Work starts with the domain — who can see what, what must never be deleted, what a parent can look up without an account — then the panels and tests follow.
               </p>
               <p>
-                I’m especially interested in teams that build meaningful software for real businesses, where quality and speed are not treated as opposites.
+                I want to join a software house or product team that builds custom web apps, portals, and internal tools for real businesses. Quality and speed are not opposites if the model is clear.
               </p>
             </div>
 
             <div class="mt-9 flex flex-wrap gap-3">
-              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">Systems thinker</span>
-              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">API builder</span>
-              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">UI detailer</span>
+              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">Role-aware panels</span>
+              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">Public portals</span>
+              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">Tests in CI</span>
             </div>
           </div>
         </div>
       </div>
     </section>
- 
+
     <section id="contact" class="border-t-2 border-ink bg-ember px-5 py-24 lg:px-8 lg:py-36">
       <div class="mx-auto max-w-7xl">
         <div class="grid gap-14 lg:grid-cols-[1fr_.8fr] lg:items-end">
           <div>
             <p class="mb-5 font-mono text-xs uppercase tracking-[0.3em]">Open invitation</p>
-            <h2 class="font-display text-[clamp(4rem,10vw,9rem)] font-bold leading-[0.8] tracking-[-0.09em]">
-              Let’s build<br />
-              something<br />
-              <span class="text-acid">useful.</span>
+            <h2 class="font-display text-[clamp(3.4rem,9vw,8rem)] font-bold leading-[0.82] tracking-[-0.09em]">
+              Hire a Laravel<br />
+              developer who<br />
+              <span class="text-acid">ships.</span>
             </h2>
           </div>
 
           <div>
+            <p class="mb-3 font-mono text-xs uppercase tracking-widest">Based in Sehwan, Pakistan · remote-friendly</p>
             <p class="mb-8 max-w-md text-lg leading-relaxed">
-              If you’re looking for a Laravel developer who thinks beyond tickets and cares about the whole product, I’d like to hear from you.
+              If your team needs custom software, admin panels, or a public + authenticated product on Laravel, I would like to hear from you.
             </p>
 
             <div class="flex flex-col gap-4">
-              <a href="mailto:shayan@example.com" class="inline-flex items-center justify-between border-3 border-ink bg-paper px-5 py-4 font-display font-bold shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
-                Email Shayan
-                <span class="text-2xl">↗</span>
+              <a href="https://github.com/shayanalibuilds" target="_blank" rel="noreferrer" class="inline-flex items-center justify-between border-2 border-ink bg-paper px-5 py-4 font-display font-bold shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+                GitHub — shayanalibuilds
+                <span class="text-2xl" aria-hidden="true">↗</span>
               </a>
-            </div>
-
-            <div class="mt-8 flex flex-wrap gap-5 font-mono text-xs uppercase tracking-widest">
-              <a href="https://github.com/" target="_blank" rel="noreferrer" class="underline underline-offset-4 hover:text-acid">GitHub</a>
-              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" class="underline underline-offset-4 hover:text-acid">LinkedIn</a>
+              <a href="https://github.com/shayanalibuilds/school-management" target="_blank" rel="noreferrer" class="inline-flex items-center justify-between border-2 border-ink bg-ink px-5 py-4 font-display font-bold text-paper shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+                Start with school-management
+                <span class="text-2xl text-acid" aria-hidden="true">↗</span>
+              </a>
             </div>
           </div>
         </div>
@@ -493,11 +469,12 @@
 
   <footer class="bg-ink px-5 py-7 text-paper lg:px-8">
     <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 font-mono text-xs uppercase tracking-widest text-paper/60 sm:flex-row">
-      <span>© 2026 Shayan Ali Jalbani</span>
-      <span>Built with Laravel energy</span>
+      <span>© 2026 Shayan Ali Jalbani · Sehwan, Pakistan</span>
+      <span>Tailwind + Alpine · one file</span>
     </div>
   </footer>
 
+  <style>[x-cloak]{display:none !important}</style>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>
