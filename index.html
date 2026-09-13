@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shayan Ali Jalbani - Laravel Developer building fast, scalable and thoughtful digital products." />
+  <title>Shayan Ali Jalbani | Laravel Developer</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#171717",
+            paper: "#f4f0e8",
+            acid: "#dfff3f",
+            ember: "#ff6848",
+            muted: "#77736d"
+          },
+          fontFamily: {
+            display: ["Space Grotesk", "sans-serif"],
+            body: ["DM Sans", "sans-serif"],
+            mono: ["IBM Plex Mono", "monospace"]
+          },
+          boxShadow: {
+            brutal: "8px 8px 0 #171717",
+            brutalSm: "4px 4px 0 #171717"
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(223, 255, 63, 0.2), transparent 23rem),
+        radial-gradient(circle at 90% 30%, rgba(255, 104, 72, 0.12), transparent 28rem),
+        #f4f0e8;
+    }
+
+    .grid-paper {
+      background-image:
+        linear-gradient(rgba(23, 23, 23, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 23, 23, 0.055) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .noise {
+      position: relative;
+    }
+
+    .noise::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.055;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    .marquee {
+      animation: marquee 22s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .float {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-12px) rotate(-1deg); }
+    }
+
+    .reveal {
+      animation: reveal 0.8s both;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    ::selection {
+      color: #171717;
+      background: #dfff3f;
+    }
+  </style>
+</head>
+
+<body
+  x-data="{ mobileOpen: false, activeFilter: 'All', darkMode: false }"
+  :class="{ 'bg-ink text-paper': darkMode }"
+  class="noise overflow-x-hidden text-ink transition-colors duration-500"
+>
+  <header class="fixed left-0 right-0 top-0 z-50 border-b-2 border-ink/10 bg-paper/85 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#top" class="group flex items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center border-2 border-ink bg-acid font-display text-xl font-bold shadow-brutalSm transition group-hover:translate-x-1 group-hover:translate-y-1 group-hover:shadow-none">
+          S
+        </span>
+        <span class="font-display text-lg font-bold tracking-tight">
+          Shayan<span class="text-ember">.</span>
+        </span>
+      </a>
+
+      <div class="hidden items-center gap-8 md:flex">
+        <a href="#work" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Work</a>
+        <a href="#stack" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Stack</a>
+        <a href="#about" class="font-mono text-xs uppercase tracking-widest hover:text-ember">About</a>
+        <a href="#contact" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Contact</a>
+
+        <button
+          @click="darkMode = !darkMode"
+          class="border-2 border-ink px-3 py-2 font-mono text-xs uppercase tracking-widest shadow-brutalSm transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+        >
+          <span x-show="!darkMode">Night</span>
+          <span x-show="darkMode">Day</span>
+        </button>
+      </div>
+
+      <button
+        @click="mobileOpen = !mobileOpen"
+        class="border-2 border-ink p-2 md:hidden"
+        aria-label="Toggle menu"
+      >
+        <span class="block h-0.5 w-6 bg-ink"></span>
+        <span class="mt-1.5 block h-0.5 w-6 bg-ink"></span>
+        <span class="mt-1.5 block h-0.5 w-6 bg-ink"></span>
+      </button>
+    </nav>
+
+    <div x-show="mobileOpen" x-transition class="border-t-2 border-ink/10 bg-paper px-5 py-5 md:hidden">
+      <div class="flex flex-col gap-5 font-mono text-xs uppercase tracking-widest">
+        <a @click="mobileOpen = false" href="#work">Work</a>
+        <a @click="mobileOpen = false" href="#stack">Stack</a>
+        <a @click="mobileOpen = false" href="#about">About</a>
+        <a @click="mobileOpen = false" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="grid-paper relative overflow-hidden px-5 pb-24 pt-36 lg:px-8 lg:pb-36 lg:pt-48">
+      <div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
+        <div class="reveal">
+          <div class="mb-6 inline-flex items-center gap-2 border-2 border-ink bg-acid px-3 py-2 font-mono text-xs font-semibold uppercase tracking-widest shadow-brutalSm">
+            <span class="h-2 w-2 animate-pulse rounded-full bg-ember"></span>
+            Available for a great team
+          </div>
+
+          <h1 class="max-w-5xl font-display text-[clamp(3.7rem,10vw,9rem)] font-bold leading-[0.83] tracking-[-0.08em]">
+            Backend<br />
+            <span class="text-ember">with a</span><br />
+            point of view.
+          </h1>
+
+          <p class="mt-8 max-w-xl text-lg leading-relaxed text-muted md:text-xl">
+            I’m <strong class="text-ink">Shayan Ali Jalbani</strong>, a Laravel developer who turns complex ideas into clean, reliable and scalable digital products.
+          </p>
+
+          <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+            <a href="#work" class="inline-flex items-center justify-center gap-3 border-2 border-ink bg-ink px-6 py-4 font-display font-bold text-paper shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+              Explore my work
+              <span class="text-acid">↘</span>
+            </a>
+
+            <a href="mailto:shayan@example.com?subject=Laravel Developer Opportunity" class="inline-flex items-center justify-center gap-3 border-2 border-ink bg-paper px-6 py-4 font-display font-bold shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+              Let’s talk
+              <span class="text-ember">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-md lg:ml-auto">
+          <div class="absolute -right-3 -top-7 z-10 rotate-6 border-2 border-ink bg-ember px-4 py-3 font-mono text-xs font-bold uppercase tracking-widest shadow-brutalSm">
+            Laravel / PHP
+          </div>
+
+          <div class="relative aspect-square rotate-3 border-2 border-ink bg-ink p-5 shadow-brutal">
+            <div class="flex h-full flex-col justify-between border-2 border-acid/40 p-6 text-paper">
+              <div class="flex items-center justify-between font-mono text-xs text-acid">
+                <span>PROFILE_001</span>
+                <span>2026</span>
+              </div>
+
+              <div class="relative">
+                <div class="absolute -left-3 -top-12 font-display text-[8rem] font-bold leading-none text-acid/15">
+                  SAJ
+                </div>
+
+                <div class="relative">
+                  <p class="font-mono text-sm text-ember">FULL STACK ENGINEER</p>
+                  <h2 class="mt-3 font-display text-5xl font-bold leading-[0.9] tracking-[-0.06em]">
+                    Build it<br />
+                    to last.
+                  </h2>
+                </div>
+              </div>
+
+              <div class="flex items-end justify-between">
+                <div>
+                  <div class="mb-2 h-2 w-20 bg-acid"></div>
+                  <p class="font-mono text-xs text-paper/60">Karachi / Pakistan</p>
+                </div>
+                <div class="float grid h-16 w-16 place-items-center rounded-full border-2 border-acid text-3xl text-acid">
+                  ✳
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute -bottom-9 -left-8 hidden rotate-[-9deg] border-2 border-ink bg-acid px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest shadow-brutalSm sm:block">
+            Clean code, bold ideas
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="overflow-hidden border-y-2 border-ink bg-ember py-4">
+      <div class="marquee flex w-max items-center gap-8 font-display text-2xl font-bold uppercase tracking-tight">
+        <span>Laravel</span><span>✦</span><span>PHP</span><span>✦</span><span>Product thinking</span><span>✦</span>
+        <span>Laravel</span><span>✦</span><span>PHP</span><span>✦</span><span>Product thinking</span><span>✦</span>
+      </div>
+    </div>
+
+    <section id="work" class="px-5 py-24 lg:px-8 lg:py-36">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-ember">Selected work</p>
+            <h2 class="font-display text-5xl font-bold tracking-[-0.06em] md:text-7xl">
+              Things I’ve<br /><span class="text-ember">made useful.</span>
+            </h2>
+          </div>
+          <p class="max-w-sm text-muted">
+            A selection of product-minded builds focused on the parts that matter: speed, clarity, maintainability and real business value.
+          </p>
+        </div>
+
+        <div class="mb-10 flex flex-wrap gap-3">
+          <template x-for="filter in ['All', 'Laravel', 'Frontend', 'Systems']" :key="filter">
+            <button
+              @click="activeFilter = filter"
+              :class="activeFilter === filter ? 'bg-ink text-paper' : 'bg-paper text-ink'"
+              class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest shadow-brutalSm transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+              x-text="filter"
+            ></button>
+          </template>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2">
+          <article
+            x-show="activeFilter === 'All' || activeFilter === 'Laravel' || activeFilter === 'Systems'"
+            class="group border-2 border-ink bg-ink p-4 text-paper shadow-brutal transition hover:-translate-y-2"
+          >
+            <div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden bg-[#243c2c] p-7">
+              <div class="absolute -right-8 -top-10 h-48 w-48 rounded-full border-[24px] border-acid/80"></div>
+              <div class="absolute bottom-12 right-16 h-24 w-24 rotate-45 bg-ember"></div>
+
+              <div class="relative flex items-center justify-between font-mono text-xs text-acid">
+                <span>01 / OPERATIONS</span>
+                <span>2025</span>
+              </div>
+
+              <div class="relative">
+                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-paper/60">Laravel · FilamentPHP · Livewire</p>
+                <h3 class="font-display text-4xl font-bold leading-none">Atlas<br />Admin Suite</h2>
+              </div>
+            </div>
+
+            <div class="flex items-start justify-between gap-5 px-2 pb-1 pt-6">
+              <p class="max-w-sm text-sm leading-relaxed text-paper/65">
+                A fast internal operations platform for teams managing users, workflows, permissions and reporting.
+              </p>
+              <span class="text-3xl text-acid transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            </div>
+          </article>
+
+          <article
+            x-show="activeFilter === 'All' || activeFilter === 'Frontend'"
+            class="group border-2 border-ink bg-acid p-4 shadow-brutal transition hover:-translate-y-2"
+          >
+            <div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden bg-[#e8d9c0] p-7 text-ink">
+              <div class="absolute -bottom-16 -right-10 h-64 w-64 rounded-full border-[28px] border-ember"></div>
+              <div class="absolute right-24 top-16 h-28 w-28 rounded-full bg-ink"></div>
+
+              <div class="relative flex items-center justify-between font-mono text-xs">
+                <span>02 / COMMERCE</span>
+                <span>2024</span>
+              </div>
+
+              <div class="relative">
+                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-ink/60">Vue · Alpine · Tailwind</p>
+                <h3 class="font-display text-4xl font-bold leading-none">Nook<br />Marketplace</h3>
+              </div>
+            </div>
+
+            <div class="flex items-start justify-between gap-5 px-2 pb-1 pt-6">
+              <p class="max-w-sm text-sm leading-relaxed text-ink/65">
+                A lightweight marketplace experience built around simple browsing, thoughtful states and a frictionless checkout.
+              </p>
+              <span class="text-3xl text-ember transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            </div>
+          </article>
+
+          <article
+            x-show="activeFilter === 'All' || activeFilter === 'Laravel' || activeFilter === 'Systems'"
+            class="group border-2 border-ink bg-ember p-4 shadow-brutal transition hover:-translate-y-2"
+          >
+            <div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden bg-[#f5ebdd] p-7 text-ink">
+              <div class="absolute right-8 top-12 grid grid-cols-5 gap-2 opacity-80">
+                <template x-for="i in 25" :key="i">
+                  <span class="h-3 w-3 rounded-full bg-ink"></span>
+                </template>
+              </div>
+
+              <div class="relative flex items-center justify-between font-mono text-xs">
+                <span>03 / CONTENT</span>
+                <span>2024</span>
+              </div>
+
+              <div class="relative">
+                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-ink/60">Laravel · Blade · MySQL</p>
+                <h3 class="font-display text-4xl font-bold leading-none">Field<br />Notes CMS</h3>
+              </div>
+            </div>
+
+            <div class="flex items-start justify-between gap-5 px-2 pb-1 pt-6">
+              <p class="max-w-sm text-sm leading-relaxed text-paper">
+                A flexible publishing system for teams that need editorial control without slowing down the people doing the work.
+              </p>
+              <span class="text-3xl text-ink transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            </div>
+          </article>
+
+          <article
+            x-show="activeFilter === 'All' || activeFilter === 'Frontend'"
+            class="group border-2 border-ink bg-paper p-4 shadow-brutal transition hover:-translate-y-2"
+          >
+            <div class="relative flex min-h-[360px] flex-col justify-between overflow-hidden bg-[#19242c] p-7 text-paper">
+              <div class="absolute bottom-[-40px] left-[-30px] h-56 w-56 rounded-full border-[20px] border-ember"></div>
+              <div class="absolute right-12 top-12 h-28 w-28 rotate-12 border-2 border-acid"></div>
+
+              <div class="relative flex items-center justify-between font-mono text-xs text-acid">
+                <span>04 / PRODUCT</span>
+                <span>2023</span>
+              </div>
+
+              <div class="relative">
+                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-paper/60">React · Next.js · APIs</p>
+                <h3 class="font-display text-4xl font-bold leading-none">Signal<br />Dashboard</h3>
+              </div>
+            </div>
+
+            <div class="flex items-start justify-between gap-5 px-2 pb-1 pt-6">
+              <p class="max-w-sm text-sm leading-relaxed text-muted">
+                A responsive analytics dashboard that makes dense information feel calm, clear and actionable.
+              </p>
+              <span class="text-3xl text-ember transition group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="border-y-2 border-ink bg-ink px-5 py-24 text-paper lg:px-8 lg:py-36">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid gap-16 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-acid">My toolkit</p>
+            <h2 class="font-display text-5xl font-bold leading-[0.92] tracking-[-0.06em] md:text-7xl">
+              The stack<br />
+              behind the<br />
+              <span class="text-ember">thinking.</span>
+            </h2>
+          </div>
+
+          <div class="grid content-start gap-0 sm:grid-cols-2">
+            <template x-for="(skill, index) in ['LARAVEL', 'PHP', 'ALPINE', 'NEXT.JS', 'REACT', 'VUE', 'INERTIA', 'BLADE', 'LIVEWIRE', 'TAILWIND', 'FILAMENTPHP']" :key="skill">
+              <div class="group border-b border-paper/20 py-5" :class="index % 2 === 0 ? 'sm:mr-8' : ''">
+                <div class="flex items-center justify-between">
+                  <span class="font-display text-xl font-bold transition group-hover:text-acid" x-text="skill"></span>
+                  <span class="font-mono text-xs text-paper/40" x-text="String(index + 1).padStart(2, '0')"></span>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="px-5 py-24 lg:px-8 lg:py-36">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+          <div class="relative">
+            <div class="absolute -left-5 -top-5 h-full w-full border-2 border-ember"></div>
+            <div class="relative border-2 border-ink bg-acid p-8 shadow-brutal md:p-12">
+              <p class="font-mono text-xs uppercase tracking-[0.3em]">A little context</p>
+              <p class="mt-14 font-display text-4xl font-bold leading-tight tracking-[-0.05em] md:text-5xl">
+                I care about the line between “it works” and “it feels right.”
+              </p>
+              <div class="mt-14 flex items-end justify-between">
+                <span class="font-mono text-xs uppercase tracking-widest">Shayan Ali Jalbani</span>
+                <span class="text-5xl">↘</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="mb-7 font-mono text-xs uppercase tracking-[0.3em] text-ember">How I work</p>
+            <h2 class="font-display text-4xl font-bold leading-tight tracking-[-0.05em] md:text-6xl">
+              Technical depth.<br />
+              Product empathy.
+            </h2>
+
+            <div class="mt-8 space-y-5 text-lg leading-relaxed text-muted">
+              <p>
+                I build full-stack experiences with a strong Laravel and PHP foundation, while staying comfortable across modern frontend ecosystems.
+              </p>
+              <p>
+                My best work happens when engineering is close to the problem: understanding the user, simplifying the workflow and making the system dependable.
+              </p>
+              <p>
+                I’m especially interested in teams that build meaningful software for real businesses, where quality and speed are not treated as opposites.
+              </p>
+            </div>
+
+            <div class="mt-9 flex flex-wrap gap-3">
+              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">Systems thinker</span>
+              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">API builder</span>
+              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">UI detailer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 pb-24 lg:px-8 lg:pb-36">
+      <div class="mx-auto max-w-7xl border-2 border-ink bg-[#e8d9c0] p-8 shadow-brutal md:p-12">
+        <div class="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-ember">Why this fit</p>
+            <h2 class="max-w-4xl font-display text-4xl font-bold leading-[0.95] tracking-[-0.06em] md:text-7xl">
+              Helping ambitious teams ship software people trust.
+            </h2>
+          </div>
+
+          <div class="max-w-xs text-sm leading-relaxed text-muted">
+            <p>
+              MinhaSoft builds digital products across web, mobile and custom software. I bring a Laravel-first engineering mindset that can support that kind of range.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="border-t-2 border-ink bg-ember px-5 py-24 lg:px-8 lg:py-36">
+      <div class="mx-auto max-w-7xl">
+        <div class="grid gap-14 lg:grid-cols-[1fr_.8fr] lg:items-end">
+          <div>
+            <p class="mb-5 font-mono text-xs uppercase tracking-[0.3em]">Open invitation</p>
+            <h2 class="font-display text-[clamp(4rem,10vw,9rem)] font-bold leading-[0.8] tracking-[-0.09em]">
+              Let’s build<br />
+              something<br />
+              <span class="text-acid">useful.</span>
+            </h2>
+          </div>
+
+          <div>
+            <p class="mb-8 max-w-md text-lg leading-relaxed">
+              If you’re looking for a Laravel developer who thinks beyond tickets and cares about the whole product, I’d like to hear from you.
+            </p>
+
+            <div class="flex flex-col gap-4">
+              <a href="mailto:shayan@example.com" class="inline-flex items-center justify-between border-3 border-ink bg-paper px-5 py-4 font-display font-bold shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+                Email Shayan
+                <span class="text-2xl">↗</span>
+              </a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-5 font-mono text-xs uppercase tracking-widest">
+              <a href="https://github.com/" target="_blank" rel="noreferrer" class="underline underline-offset-4 hover:text-acid">GitHub</a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" class="underline underline-offset-4 hover:text-acid">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-ink px-5 py-7 text-paper lg:px-8">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 font-mono text-xs uppercase tracking-widest text-paper/60 sm:flex-row">
+      <span>© 2026 Shayan Ali Jalbani</span>
+      <span>Built with Laravel energy</span>
+    </div>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>
