@@ -1,485 +1,449 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shayan Ali Jalbani — Laravel developer in Sehwan, Pakistan. TALL stack, Filament, Livewire. Building school systems, CMS tools, and product-ready admin panels." />
-  <title>Shayan Ali Jalbani | Laravel Developer</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shayan Ali Jalbani — Laravel Developer</title>
+  <meta name="description" content="Shayan Ali Jalbani — Laravel developer in Sehwan, Pakistan. Role-aware admin panels, public portals and CMS tools with the TALL stack and Filament, covered in tests.">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            ink: "#171717",
-            paper: "#f4f0e8",
-            acid: "#dfff3f",
-            ember: "#ff6848",
-            muted: "#77736d"
+            bg: 'var(--bg)', fg: 'var(--fg)', muted: 'var(--muted)',
+            line: 'var(--line)', tint: 'var(--tint)', accent: 'var(--accent)',
           },
           fontFamily: {
-            display: ["Space Grotesk", "sans-serif"],
-            body: ["DM Sans", "sans-serif"],
-            mono: ["IBM Plex Mono", "monospace"]
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           },
-          boxShadow: {
-            brutal: "8px 8px 0 #171717",
-            brutalSm: "4px 4px 0 #171717"
-          }
-        }
-      }
-    };
+        },
+      },
+    }
   </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
   <style>
-    html { scroll-behavior: smooth; }
-
+    :root {
+      --bg: #FAF9F6; --fg: #161412; --muted: #6B655C;
+      --line: #E3DED3; --tint: #F2EEE5; --accent: #D81F26;
+      --noise-op: .03;
+    }
+    html.dark {
+      --bg: #0B0B0B; --fg: #EDEAE4; --muted: #8E8880;
+      --line: #232220; --tint: #151413; --accent: #FF5B4A;
+      --noise-op: .045;
+    }
     body {
-      background:
-        radial-gradient(circle at 15% 10%, rgba(223, 255, 63, 0.2), transparent 23rem),
-        radial-gradient(circle at 90% 30%, rgba(255, 104, 72, 0.12), transparent 28rem),
-        #f4f0e8;
-      font-family: "DM Sans", sans-serif;
+      background: var(--bg); color: var(--fg);
+      font-feature-settings: "ss01", "cv11";
+      -webkit-font-smoothing: antialiased;
     }
-
-    .grid-paper {
-      background-image:
-        linear-gradient(rgba(23, 23, 23, 0.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(23, 23, 23, 0.055) 1px, transparent 1px);
-      background-size: 28px 28px;
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      opacity: var(--noise-op);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
     }
+    ::selection { background: var(--accent); color: #fff; }
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-thumb { background: var(--line); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-    .noise { position: relative; }
-    .noise::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.055;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-      mix-blend-mode: multiply;
+    .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    section { scroll-margin-top: 84px; }
+
+    /* ---------- Framer-style text choreography ---------- */
+    .ch {
+      display: inline-block; opacity: 0;
+      transform: translateY(.38em) rotate(1.5deg);
+      transition: opacity .55s cubic-bezier(.16,1,.3,1),
+                  transform .75s cubic-bezier(.2,1.25,.3,1);
+      transition-delay: calc(var(--d,0)*1ms);
     }
+    .in .ch { opacity: 1; transform: none; }
 
-    .marquee { animation: marquee 28s linear infinite; }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+    .pw {
+      display: inline-block; opacity: 0;
+      transform: translateY(.3em);
+      transition: opacity .6s cubic-bezier(.16,1,.3,1),
+                  transform .65s cubic-bezier(.16,1,.3,1);
+      transition-delay: calc(var(--d,0)*1ms);
     }
+    .in .pw { opacity: 1; transform: none; }
 
-    .float { animation: float 5s ease-in-out infinite; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(-4deg); }
-      50% { transform: translateY(-12px) rotate(-1deg); }
+    .mw {
+      display: inline-block; overflow: hidden; vertical-align: bottom;
+      padding: 0 .12em .16em; margin: 0 -.12em -.16em;
     }
-
-    .reveal { animation: reveal 0.8s both; }
-    @keyframes reveal {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
+    .mi {
+      display: inline-block; transform: translateY(125%);
+      transition: transform 1s cubic-bezier(.2,1.1,.28,1);
+      transition-delay: calc(var(--d,0)*1ms);
     }
+    .in .mi { transform: none; }
 
-    ::selection { color: #171717; background: #dfff3f; }
-
-    :focus-visible {
-      outline: 3px solid #dfff3f;
-      outline-offset: 3px;
+    .fx {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity .7s cubic-bezier(.16,1,.3,1),
+                  transform .7s cubic-bezier(.16,1,.3,1);
+      transition-delay: calc(var(--d,0)*1ms);
     }
+    .in .fx { opacity: 1; transform: none; }
+
+    /* ---------- interactions ---------- */
+    .link { position: relative; transition: color .25s ease; }
+    .link::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px;
+      background: var(--accent); transform: scaleX(0); transform-origin: left;
+      transition: transform .3s cubic-bezier(.2,.8,.2,1);
+    }
+    .link:hover { color: var(--accent); }
+    .link:hover::after { transform: scaleX(1); }
+
+    .row { transition: background-color .3s ease; }
+    .row:hover { background: var(--tint); }
+    .row:hover h3 { color: var(--accent); }
+    .row .arw { opacity: 0; transform: translateX(-5px); transition: opacity .25s ease, transform .25s ease; }
+    .row:hover .arw { opacity: 1; transform: none; }
+
+    .tk-row { transition: background-color .3s ease, color .25s ease; }
+    .tk-row:hover { background: var(--tint); color: var(--accent); }
+
+    .theme-btn .sun, .theme-btn .moon { transition: opacity .3s ease, transform .35s cubic-bezier(.2,1.2,.3,1); }
+    html:not(.dark) .moon { opacity: 0; position: absolute; transform: rotate(-45deg) scale(.6); }
+    html.dark .sun { opacity: 0; position: absolute; transform: rotate(45deg) scale(.6); }
+
+    /* marquee */
+    .mq-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+    .mq-track { animation: mq 55s linear infinite; }
+    .mq:hover .mq-track { animation-play-state: paused; }
+    @keyframes mq { from { transform: translateX(0) } to { transform: translateX(-50%) } }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .marquee, .float, .reveal { animation: none; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .ch, .pw, .fx { opacity: 1; transform: none; }
+      .mi { transform: none; }
     }
   </style>
 </head>
+<body class="font-sans antialiased">
 
-<body
-  x-data="{
-    mobileOpen: false,
-    activeFilter: 'All',
-    darkMode: localStorage.getItem('theme') === 'dark',
-    toggleTheme() {
-      this.darkMode = !this.darkMode;
-      localStorage.setItem('theme', this.darkMode ? 'dark' : 'light');
-    }
-  }"
-  :class="{ 'bg-ink text-paper': darkMode }"
-  class="noise overflow-x-hidden text-ink transition-colors duration-500"
->
-  <a href="#top" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-acid focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:text-ink">Skip to content</a>
-
-  <header class="fixed left-0 right-0 top-0 z-50 border-b-2 border-ink/10 bg-paper/85 backdrop-blur-xl">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-      <a href="#top" class="group flex items-center gap-3">
-        <span class="grid h-10 w-10 place-items-center border-2 border-ink bg-acid font-display text-xl font-bold shadow-brutalSm transition group-hover:translate-x-1 group-hover:translate-y-1 group-hover:shadow-none">S</span>
-        <span class="font-display text-lg font-bold tracking-tight">Shayan<span class="text-ember">.</span></span>
-      </a>
-
-      <div class="hidden items-center gap-8 md:flex">
-        <a href="#work" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Work</a>
-        <a href="#now" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Now</a>
-        <a href="#stack" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Stack</a>
-        <a href="#about" class="font-mono text-xs uppercase tracking-widest hover:text-ember">About</a>
-        <a href="#contact" class="font-mono text-xs uppercase tracking-widest hover:text-ember">Contact</a>
-        <button
-          type="button"
-          @click="toggleTheme()"
-          class="border-2 border-ink px-3 py-2 font-mono text-xs uppercase tracking-widest shadow-brutalSm transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-        >
-          <span x-show="!darkMode">Night</span>
-          <span x-show="darkMode" x-cloak>Day</span>
-        </button>
-      </div>
-
-      <button
-        type="button"
-        @click="mobileOpen = !mobileOpen"
-        class="border-2 border-ink p-2 md:hidden"
-        :aria-expanded="mobileOpen.toString()"
-        aria-controls="mobile-menu"
-        aria-label="Toggle menu"
-      >
-        <span class="block h-0.5 w-6 bg-ink"></span>
-        <span class="mt-1.5 block h-0.5 w-6 bg-ink"></span>
-        <span class="mt-1.5 block h-0.5 w-6 bg-ink"></span>
-      </button>
-    </nav>
-
-    <div id="mobile-menu" x-show="mobileOpen" x-transition x-cloak class="border-t-2 border-ink/10 bg-paper px-5 py-5 md:hidden">
-      <div class="flex flex-col gap-5 font-mono text-xs uppercase tracking-widest">
-        <a @click="mobileOpen = false" href="#work">Work</a>
-        <a @click="mobileOpen = false" href="#now">Now</a>
-        <a @click="mobileOpen = false" href="#stack">Stack</a>
-        <a @click="mobileOpen = false" href="#about">About</a>
-        <a @click="mobileOpen = false" href="#contact">Contact</a>
-        <button type="button" @click="toggleTheme()" class="w-fit border-2 border-ink px-3 py-2">
-          <span x-show="!darkMode">Night</span>
-          <span x-show="darkMode">Day</span>
-        </button>
-      </div>
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 border-b border-transparent transition-colors duration-300 bg-bg" id="nav">
+    <div class="max-w-3xl mx-auto px-6 md:px-0">
+      <nav class="flex items-center justify-between h-16">
+        <a href="#top" class="mono text-[13px] tracking-tight">Shayan<span class="text-accent">.</span></a>
+        <div class="flex items-center gap-7">
+          <ul class="hidden sm:flex items-center gap-7 text-[13.5px] text-muted">
+            <li><a href="#work" class="link">Work</a></li>
+            <li><a href="#now" class="link">Now</a></li>
+            <li><a href="#stack" class="link">Stack</a></li>
+            <li><a href="#about" class="link">About</a></li>
+            <li><a href="#contact" class="link">Contact</a></li>
+          </ul>
+          <button id="themeToggle" aria-label="Toggle theme" class="theme-btn relative grid place-items-center w-8 h-8 text-muted hover:text-accent transition-colors">
+            <svg class="sun w-[15px] h-[15px]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 3v1.5m0 15V21M4.2 4.2l1 1m13.6 13.6 1 1M3 12h1.5m15 0H21M4.2 19.8l1-1m13.6-13.6 1-1"/></svg>
+            <svg class="moon w-[15px] h-[15px]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M20 14.5A8.5 8.5 0 119.5 4a7 7 0 0010.5 10.5z"/></svg>
+          </button>
+        </div>
+      </nav>
     </div>
   </header>
 
-  <main id="top">
-    <section class="grid-paper relative overflow-hidden px-5 pb-24 pt-36 lg:px-8 lg:pb-36 lg:pt-48">
-      <div class="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
-        <div class="reveal">
-          <div class="mb-6 inline-flex items-center gap-2 border-2 border-ink bg-acid px-3 py-2 font-mono text-xs font-semibold uppercase tracking-widest shadow-brutalSm">
-            <span class="h-2 w-2 animate-pulse rounded-full bg-ember" aria-hidden="true"></span>
-            Open to teams that ship real products
-          </div>
+  <main id="top" class="relative z-10 max-w-3xl mx-auto px-6 md:px-0">
 
-          <h1 class="max-w-5xl font-display text-[clamp(3.2rem,9vw,8.2rem)] font-bold leading-[0.86] tracking-[-0.08em]">
-            Laravel<br />
-            <span class="text-ember">systems</span><br />
-            that last.
-          </h1>
+    <!-- HERO -->
+    <section id="hero" class="pt-40 md:pt-52 pb-28 md:pb-36">
+      <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted flex items-center gap-2.5" data-chars>
+        <span class="dot inline-block w-1.5 h-1.5 bg-accent flex-none"></span>
+        Open to teams that ship real products
+      </p>
 
-          <p class="mt-8 max-w-xl text-lg leading-relaxed text-muted md:text-xl">
-            I’m <strong class="text-ink">Shayan Ali Jalbani</strong>, a Laravel developer in Sehwan, Pakistan. I build role-aware admin panels, public portals, and CMS tools with the TALL stack and Filament — then cover them with tests.
-          </p>
+      <h1 class="serif mt-8 text-[3rem] sm:text-6xl md:text-[4.6rem] leading-[1.02]">
+        <span class="block" data-mask-chars data-text="Laravel systems that"></span>
+        <span class="block italic text-accent" data-mask-chars data-text="last."></span>
+      </h1>
 
-          <div class="mt-9 flex flex-col gap-4 sm:flex-row">
-            <a href="#work" class="inline-flex items-center justify-center gap-3 border-2 border-ink bg-ink px-6 py-4 font-display font-bold text-paper shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none active:scale-96">
-              View work
-              <span class="text-acid" aria-hidden="true">↘</span>
-            </a>
-            <a href="#contact" class="inline-flex items-center justify-center gap-3 border-2 border-ink bg-paper px-6 py-4 font-display font-bold shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none active:scale-96">
-              Get in touch
-              <span class="text-ember" aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
+      <p class="mt-9 text-[17px] leading-[1.75] text-muted max-w-[52ch]" data-words>
+        I'm Shayan Ali Jalbani, a Laravel developer in Sehwan, Pakistan. I build role-aware admin panels, public portals, and CMS tools with the TALL stack and Filament — then cover them with tests.
+      </p>
 
-        <div class="relative mx-auto w-full max-w-md lg:ml-auto">
-          <div class="absolute -right-3 -top-7 z-10 rotate-6 border-2 border-ink bg-ember px-4 py-3 font-mono text-xs font-bold uppercase tracking-widest shadow-brutalSm">
-            Laravel / Filament
-          </div>
+      <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-[15px]">
+        <a href="#work" class="link font-medium fx" style="--d:520">View work ↘</a>
+        <a href="#contact" class="link font-medium fx" style="--d:600">Get in touch ↗</a>
+      </div>
 
-          <div class="relative aspect-square rotate-3 border-2 border-ink bg-ink p-5 shadow-brutal">
-            <div class="flex h-full flex-col justify-between border-2 border-acid/40 p-6 text-paper">
-              <div class="flex items-center justify-between font-mono text-xs text-acid">
-                <span>PROFILE_001</span>
-                <span>2026</span>
-              </div>
+      <!-- profile band: fluid flex-wrap -->
+      <div class="mt-20 pt-6 border-t border-line flex flex-wrap items-baseline gap-x-10 gap-y-4 mono text-[10.5px] uppercase tracking-wider text-muted">
+        <div class="fx" style="--d:700">Profile_001 · 2026</div>
+        <div class="fx" style="--d:760">SAJ — Laravel dev</div>
+        <div class="fx" style="--d:820">Sehwan / Pakistan</div>
+        <div class="fx" style="--d:880">✳ Tests first, then ship</div>
+      </div>
+    </section>
 
-              <div class="relative">
-                <div class="absolute -left-3 -top-12 font-display text-[8rem] font-bold leading-none text-acid/15" aria-hidden="true">SAJ</div>
-                <div class="relative">
-                  <p class="font-mono text-sm text-ember">LARAVEL DEVELOPER</p>
-                  <h2 class="mt-3 font-display text-5xl font-bold leading-[0.9] tracking-[-0.06em]">
-                    Build it<br />
-                    to last.
-                  </h2>
-                </div>
-              </div>
-
-              <div class="flex items-end justify-between">
-                <div>
-                  <div class="mb-2 h-2 w-20 bg-acid"></div>
-                  <p class="font-mono text-xs text-paper/60">Sehwan / Pakistan</p>
-                </div>
-                <div class="float grid h-16 w-16 place-items-center rounded-full border-2 border-acid text-3xl text-acid" aria-hidden="true">✳</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="absolute -bottom-9 -left-8 hidden rotate-[-9deg] border-2 border-ink bg-acid px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest shadow-brutalSm sm:block">
-            Tests first, then ship
-          </div>
+    <!-- MARQUEE -->
+    <section class="mq border-y border-line py-4 select-none" aria-hidden="true">
+      <div class="mq-mask overflow-hidden">
+        <div class="mq-track flex w-max items-center gap-6 whitespace-nowrap mono text-[11px] uppercase tracking-wider text-muted">
+          <span>Laravel</span><span class="text-accent">✦</span><span>Livewire</span><span class="text-accent">✦</span><span>Filament</span><span class="text-accent">✦</span><span>Blade</span><span class="text-accent">✦</span><span>Tailwind</span><span class="text-accent">✦</span><span>Alpine</span><span class="text-accent">✦</span><span>Pest</span><span class="text-accent">✦</span>
+          <span>Laravel</span><span class="text-accent">✦</span><span>Livewire</span><span class="text-accent">✦</span><span>Filament</span><span class="text-accent">✦</span><span>Blade</span><span class="text-accent">✦</span><span>Tailwind</span><span class="text-accent">✦</span><span>Alpine</span><span class="text-accent">✦</span><span>Pest</span><span class="text-accent">✦</span>
         </div>
       </div>
     </section>
 
-    <div class="overflow-hidden border-y-2 border-ink bg-ember py-4" aria-hidden="true">
-      <div class="marquee flex w-max items-center gap-8 font-display text-2xl font-bold uppercase tracking-tight">
-        <span>Laravel</span><span>✦</span><span>Livewire</span><span>✦</span><span>Filament</span><span>✦</span><span>Blade</span><span>✦</span><span>Tailwind</span><span>✦</span><span>Alpine</span><span>✦</span><span>Pest</span><span>✦</span>
-        <span>Laravel</span><span>✦</span><span>Livewire</span><span>✦</span><span>Filament</span><span>✦</span><span>Blade</span><span>✦</span><span>Tailwind</span><span>✦</span><span>Alpine</span><span>✦</span><span>Pest</span><span>✦</span>
-      </div>
-    </div>
+    <!-- WORK (SHIPPED ONLY) -->
+    <section id="work" class="pt-32 md:pt-44 pb-12">
+      <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>Selected work</p>
+      <h2 class="serif mt-6 text-4xl md:text-[3.4rem] leading-[1.05]">
+        <span class="block" data-mask-chars data-text="Things I've"></span>
+        <span class="block" data-mask-chars data-text="shipped."></span>
+      </h2>
+      <p class="mt-7 text-muted text-[15.5px] leading-relaxed max-w-[46ch]" data-words>
+        Real repos only. Built for schools, ops teams, and anyone who needs an admin that non-technical people can actually use.
+      </p>
 
-    <section id="work" class="px-5 py-24 lg:px-8 lg:py-36">
-      <div class="mx-auto max-w-7xl">
-        <div class="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div>
-            <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-ember">Selected work</p>
-            <h2 class="font-display text-5xl font-bold tracking-[-0.06em] md:text-7xl">
-              Things I’ve<br /><span class="text-ember">shipped.</span>
-            </h2>
-          </div>
-          <p class="max-w-sm text-muted">
-            Real repos only. Built for schools, ops teams, and anyone who needs an admin that non-technical people can actually use.
-          </p>
-        </div>
-
-        <div class="mb-10 flex flex-wrap gap-3">
-          <template x-for="filter in ['All', 'Laravel', 'Shipped']" :key="filter">
-            <button
-              type="button"
-              @click="activeFilter = filter"
-              :class="activeFilter === filter ? 'bg-ink text-paper' : 'bg-paper text-ink'"
-              class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest shadow-brutalSm transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-              :aria-pressed="(activeFilter === filter).toString()"
-              x-text="filter"
-            ></button>
-          </template>
-        </div>
-
-        <div class="grid gap-8 md:grid-cols-2">
-          <article
-            x-show="activeFilter === 'All' || activeFilter === 'Laravel' || activeFilter === 'Shipped'"
-            class="group border-2 border-ink bg-ink p-4 text-paper shadow-brutal transition hover:-translate-y-2"
-          >
-            <div class="relative flex min-h-[320px] flex-col justify-between overflow-hidden bg-[#243c2c] p-7">
-              <div class="absolute -right-8 -top-10 h-48 w-48 rounded-full border-[24px] border-acid/80" aria-hidden="true"></div>
-              <div class="absolute bottom-12 right-16 h-24 w-24 rotate-45 bg-ember" aria-hidden="true"></div>
-
-              <div class="relative flex items-center justify-between font-mono text-xs text-acid">
-                <span>01 / EDUCATION</span>
-                <span>SHIPPED</span>
-              </div>
-
-              <div class="relative">
-                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-paper/60">Laravel 13 · Filament v5 · Livewire 4</p>
-                <h3 class="font-display text-4xl font-bold leading-none">School<br />Management</h3>
-              </div>
+      <div class="mt-14 border-t border-line">
+        <a href="#" class="row group block py-9 md:py-11 -mx-4 px-4 md:-mx-6 md:px-6 border-b border-line fx" style="--d:0">
+          <div class="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12">
+            <div class="md:w-[150px] flex-shrink-0">
+              <p class="mono text-[10.5px] uppercase tracking-wider text-muted">01 / Education</p>
+              <p class="mono text-[10.5px] uppercase tracking-wider text-accent mt-1.5">● Shipped</p>
             </div>
-
-            <div class="px-2 pb-1 pt-6">
-              <p class="max-w-md text-sm leading-relaxed text-paper/70">
+            <div class="flex-1">
+              <div class="flex items-baseline gap-3">
+                <h3 class="serif text-3xl md:text-[34px]" data-mask-chars data-text="School Management"></h3>
+                <span class="arw text-accent text-base">↗</span>
+              </div>
+              <p class="mono text-[11px] text-muted mt-3">Laravel 13 · Filament v5 · Livewire 4</p>
+              <p class="mt-4 text-muted leading-relaxed max-w-[50ch] text-[15px]">
                 Role-separated system for admins, teachers, and parents, plus a public portal that needs no account. Attendance and exams by class, CSV in/out, EasyPaisa / JazzCash, fail-closed scoping, 255 passing tests.
               </p>
-              <div class="mt-5 flex flex-wrap gap-4 font-mono text-xs uppercase tracking-widest">
-                <a href="https://myschool.wasmer.app/" target="_blank" rel="noreferrer" class="underline underline-offset-4 hover:text-acid">Live demo</a>
-                <a href="https://github.com/shayanalibuilds/school-management" target="_blank" rel="noreferrer" class="underline underline-offset-4 hover:text-acid">Source</a>
-              </div>
+              <p class="mt-5 mono text-[11px]"><span class="link">Live demo</span> <span class="text-muted">·</span> <span class="link">Source</span></p>
             </div>
-          </article>
-
-          <article
-            x-show="activeFilter === 'All' || activeFilter === 'Laravel'"
-            class="group border-2 border-ink bg-ember p-4 shadow-brutal transition hover:-translate-y-2"
-          >
-            <div class="relative flex min-h-[320px] flex-col justify-between overflow-hidden bg-[#f5ebdd] p-7 text-ink">
-              <div class="absolute right-8 top-12 grid grid-cols-5 gap-2 opacity-80" aria-hidden="true">
-                <template x-for="i in 25" :key="i">
-                  <span class="h-3 w-3 rounded-full bg-ink"></span>
-                </template>
-              </div>
-
-              <div class="relative flex items-center justify-between font-mono text-xs">
-                <span>02 / PUBLISHING</span>
-                <span>IN PROGRESS</span>
-              </div>
-
-              <div class="relative">
-                <p class="mb-3 font-mono text-xs uppercase tracking-widest text-ink/60">Laravel · Livewire Volt · Flux</p>
-                <h3 class="font-display text-4xl font-bold leading-none">Content<br />Management</h3>
-              </div>
-            </div>
-
-            <div class="px-2 pb-1 pt-6">
-              <p class="max-w-md text-sm leading-relaxed text-ink">
-                CMS for small marketing and ops teams — create, edit, schedule, and publish pages and posts. Admin built so non-technical people can run it.
-              </p>
-              <div class="mt-5 flex flex-wrap gap-4 font-mono text-xs uppercase tracking-widest">
-                <a href="https://mycms.wasmer.app/" target="_blank" rel="noreferrer" class="underline underline-offset-4">Live demo</a>
-                <a href="https://github.com/shayanalibuilds/content-management" target="_blank" rel="noreferrer" class="underline underline-offset-4">Source</a>
-              </div>
-            </div>
-          </article>
-        </div>
+          </div>
+        </a>
       </div>
     </section>
 
-    <section id="now" class="border-y-2 border-ink bg-paper px-5 py-24 lg:px-8 lg:py-36">
-      <div class="mx-auto max-w-7xl">
-        <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-ember">Building now</p>
-        <h2 class="mb-12 font-display text-5xl font-bold tracking-[-0.06em] md:text-7xl">
-          On the<br /><span class="text-ember">bench.</span>
-        </h2>
+    <!-- NOW / BENCH -->
+    <section id="now" class="pt-32 md:pt-44 pb-12">
+      <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>Building now</p>
+      <h2 class="serif mt-6 text-4xl md:text-[3.4rem] leading-[1.05]">
+        <span class="block" data-mask-chars data-text="On the"></span>
+        <span class="block" data-mask-chars data-text="bench."></span>
+      </h2>
 
-        <div class="grid gap-6 md:grid-cols-2">
-          <article class="border-2 border-ink bg-acid p-7 shadow-brutalSm">
-            <p class="font-mono text-xs uppercase tracking-widest">In progress</p>
-            <h3 class="mt-4 font-display text-3xl font-bold tracking-[-0.04em]">Content Management</h3>
-            <p class="mt-4 text-ink/75">Livewire 4 Volt + Flux UI admin, SQLite default, Pest / Larastan / Pint / Rector on every push.</p>
-            <div class="mt-6 flex flex-wrap gap-4 font-mono text-xs uppercase tracking-widest">
-              <a href="https://mycms.wasmer.app/" target="_blank" rel="noreferrer" class="underline underline-offset-4">Live demo</a>
-              <a href="https://github.com/shayanalibuilds/content-management" target="_blank" rel="noreferrer" class="underline underline-offset-4">Open repo</a>
+      <div class="mt-12 border-t border-line">
+        <div class="row py-7 border-b border-line -mx-4 px-4 md:-mx-6 md:px-6 fx" style="--d:0">
+          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-12">
+            <p class="mono text-[10.5px] uppercase tracking-wider text-accent md:w-[150px] flex-shrink-0">In progress</p>
+            <div class="flex-1">
+              <h3 class="text-[17px] font-medium">Content Management</h3>
+              <p class="text-muted text-[14.5px] leading-relaxed mt-2 max-w-[50ch]">
+                Livewire 4 Volt + Flux UI admin, SQLite default, Pest / Larastan / Pint / Rector on every push.
+              </p>
+              <p class="mt-4 mono text-[11px]"><span class="link">Live demo</span> <span class="text-muted">·</span> <span class="link">Open repo</span></p>
             </div>
-          </article>
-
-          <article class="border-2 border-ink bg-ink p-7 text-paper shadow-brutalSm">
-            <p class="font-mono text-xs uppercase tracking-widest text-acid">In progress</p>
-            <h3 class="mt-4 font-display text-3xl font-bold tracking-[-0.04em]">This portfolio</h3>
-            <p class="mt-4 text-paper/70">Single-file Tailwind + Alpine site. Honest work, Sehwan on the card, ready for any product team.</p>
-            <a href="https://github.com/shayanalibuilds/portfolio" target="_blank" rel="noreferrer" class="mt-6 inline-block font-mono text-xs uppercase tracking-widest text-acid underline underline-offset-4">Open repo</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="stack" class="border-y-2 border-ink bg-ink px-5 py-24 text-paper lg:px-8 lg:py-36">
-      <div class="mx-auto max-w-7xl">
-        <div class="grid gap-16 lg:grid-cols-[.8fr_1.2fr]">
-          <div>
-            <p class="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-acid">Toolkit</p>
-            <h2 class="font-display text-5xl font-bold leading-[0.92] tracking-[-0.06em] md:text-7xl">
-              The stack<br />
-              I ship<br />
-              <span class="text-ember">with.</span>
-            </h2>
-            <p class="mt-6 max-w-sm text-paper/60">Used on school-management and content-management — not a wish list.</p>
-          </div>
-
-          <div class="grid content-start gap-0 sm:grid-cols-2">
-            <template x-for="(skill, index) in ['LARAVEL', 'PHP', 'LIVEWIRE', 'FILAMENTPHP', 'BLADE', 'ALPINE', 'TAILWIND', 'INERTIA', 'VUE', 'REACT', 'NEXT.JS']" :key="skill">
-              <div class="group border-b border-paper/20 py-5" :class="index % 2 === 0 ? 'sm:mr-8' : ''">
-                <div class="flex items-center justify-between">
-                  <span class="font-display text-xl font-bold transition group-hover:text-acid" x-text="skill"></span>
-                  <span class="font-mono text-xs text-paper/40" x-text="String(index + 1).padStart(2, '0')"></span>
-                </div>
-              </div>
-            </template>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="about" class="px-5 py-24 lg:px-8 lg:py-36">
-      <div class="mx-auto max-w-7xl">
-        <div class="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <div class="relative">
-            <div class="absolute -left-5 -top-5 h-full w-full border-2 border-ember" aria-hidden="true"></div>
-            <div class="relative border-2 border-ink bg-acid p-8 shadow-brutal md:p-12">
-              <p class="font-mono text-xs uppercase tracking-[0.3em]">A little context</p>
-              <p class="mt-14 font-display text-4xl font-bold leading-tight tracking-[-0.05em] md:text-5xl">
-                I care about the line between “it works” and “a school admin can run it.”
+        <div class="row py-7 -mx-4 px-4 md:-mx-6 md:px-6 fx" style="--d:80">
+          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-12">
+            <p class="mono text-[10.5px] uppercase tracking-wider text-accent md:w-[150px] flex-shrink-0">In progress</p>
+            <div class="flex-1">
+              <h3 class="text-[17px] font-medium">This portfolio</h3>
+              <p class="text-muted text-[14.5px] leading-relaxed mt-2 max-w-[50ch]">
+                Single-file Tailwind site. Honest work, Sehwan on the card, ready for any product team.
               </p>
-              <div class="mt-14 flex items-end justify-between">
-                <span class="font-mono text-xs uppercase tracking-widest">Sehwan, Sindh · Pakistan</span>
-                <span class="text-5xl" aria-hidden="true">↘</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <p class="mb-7 font-mono text-xs uppercase tracking-[0.3em] text-ember">How I work</p>
-            <h2 class="font-display text-4xl font-bold leading-tight tracking-[-0.05em] md:text-6xl">
-              Technical depth.<br />
-              Product empathy.
-            </h2>
-
-            <div class="mt-8 space-y-5 text-lg leading-relaxed text-muted">
-              <p>
-                I ship full-stack Laravel products: Filament and Livewire when the team needs a fast, reliable admin; Blade when a public page should stay simple; Inertia or Vue when the UI has to feel like an app.
-              </p>
-              <p>
-                Work starts with the domain — who can see what, what must never be deleted, what a parent can look up without an account — then the panels and tests follow.
-              </p>
-              <p>
-                I want to join a software house or product team that builds custom web apps, portals, and internal tools for real businesses. Quality and speed are not opposites if the model is clear.
-              </p>
-            </div>
-
-            <div class="mt-9 flex flex-wrap gap-3">
-              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">Role-aware panels</span>
-              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">Public portals</span>
-              <span class="border-2 border-ink px-4 py-2 font-mono text-xs uppercase tracking-widest">Tests in CI</span>
+              <p class="mt-4 mono text-[11px]"><span class="link">Open repo</span></p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="border-t-2 border-ink bg-ember px-5 py-24 lg:px-8 lg:py-36">
-      <div class="mx-auto max-w-7xl">
-        <div class="grid gap-14 lg:grid-cols-[1fr_.8fr] lg:items-end">
-          <div>
-            <p class="mb-5 font-mono text-xs uppercase tracking-[0.3em]">Open invitation</p>
-            <h2 class="font-display text-[clamp(3.4rem,9vw,8rem)] font-bold leading-[0.82] tracking-[-0.09em]">
-              Hire a Laravel<br />
-              developer who<br />
-              <span class="text-acid">ships.</span>
-            </h2>
-          </div>
+    <!-- STACK -->
+    <section id="stack" class="pt-32 md:pt-44 pb-12">
+      <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>Toolkit</p>
+      <h2 class="serif mt-6 text-4xl md:text-[3.4rem] leading-[1.05]">
+        <span class="block" data-mask-chars data-text="The stack"></span>
+        <span class="block" data-mask-chars data-text="I ship with."></span>
+      </h2>
+      <p class="mt-7 text-muted text-[15.5px] leading-relaxed max-w-[46ch]" data-words>
+        Used on school-management and content-management — not a wish list.
+      </p>
 
-          <div>
-            <p class="mb-3 font-mono text-xs uppercase tracking-widest">Based in Sehwan, Pakistan · remote-friendly</p>
-            <p class="mb-8 max-w-md text-lg leading-relaxed">
-              If your team needs custom software, admin panels, or a public + authenticated product on Laravel, I would like to hear from you.
-            </p>
+      <div class="mt-12 border-t border-line" id="toolkit">
+        <!-- rows injected by JS for clean stagger -->
+      </div>
+    </section>
 
-            <div class="flex flex-col gap-4">
-              <a href="https://github.com/shayanalibuilds" target="_blank" rel="noreferrer" class="inline-flex items-center justify-between border-2 border-ink bg-paper px-5 py-4 font-display font-bold shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
-                GitHub — shayanalibuilds
-                <span class="text-2xl" aria-hidden="true">↗</span>
-              </a>
-              <a href="https://github.com/shayanalibuilds/school-management" target="_blank" rel="noreferrer" class="inline-flex items-center justify-between border-2 border-ink bg-ink px-5 py-4 font-display font-bold text-paper shadow-brutal transition hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
-                Start with school-management
-                <span class="text-2xl text-acid" aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </div>
-        </div>
+    <!-- ABOUT -->
+    <section id="about" class="pt-32 md:pt-44 pb-12">
+      <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>A little context</p>
+      <h2 class="serif mt-6 text-4xl md:text-[3.4rem] leading-[1.05]">
+        <span class="block" data-mask-chars data-text="Technical depth."></span>
+        <span class="block italic text-accent" data-mask-chars data-text="Product empathy."></span>
+      </h2>
+
+      <div class="mt-12 space-y-6 max-w-[54ch]">
+        <p class="text-[16px] leading-[1.8] text-muted" data-words>
+          I ship full-stack Laravel products: Filament and Livewire when the team needs a fast, reliable admin; Blade when a public page should stay simple; Inertia or Vue when the UI has to feel like an app.
+        </p>
+        <p class="text-[16px] leading-[1.8] text-muted" data-words>
+          Work starts with the domain — who can see what, what must never be deleted, what a parent can look up without an account — then the panels and tests follow.
+        </p>
+        <p class="text-[16px] leading-[1.8] text-muted" data-words>
+          I want to join a software house or product team that builds custom web apps, portals, and internal tools for real businesses. Quality and speed are not opposites if the model is clear.
+        </p>
+      </div>
+
+      <blockquote class="mt-12 border-l-2 border-accent pl-5">
+        <p class="serif text-xl md:text-2xl leading-snug" data-mask-chars data-text="I care about the line between ‘it works’ and ‘a school admin can run it.’"></p>
+      </blockquote>
+
+      <div class="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 mono text-[10.5px] uppercase tracking-wider">
+        <span class="fx px-3 py-1.5 border border-line" style="--d:0">Role-aware panels</span>
+        <span class="fx px-3 py-1.5 border border-line" style="--d:60">Public portals</span>
+        <span class="fx px-3 py-1.5 border border-line" style="--d:120">Tests in CI</span>
+        <span class="fx text-muted" style="--d:180">Sehwan, Sindh · Pakistan ↘</span>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="pt-32 md:pt-44 pb-24">
+      <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>Open invitation</p>
+      <h2 class="serif mt-6 text-4xl md:text-[3.6rem] leading-[1.05]">
+        <span class="block" data-mask-chars data-text="Hire a Laravel"></span>
+        <span class="block" data-mask-chars data-text="developer who"></span>
+        <span class="block italic text-accent" data-mask-chars data-text="ships."></span>
+      </h2>
+      <p class="mt-8 text-muted text-[16px] leading-relaxed max-w-[48ch]" data-words>
+        Based in Sehwan, Pakistan · remote-friendly. If your team needs custom software, admin panels, or a public + authenticated product on Laravel, I would like to hear from you.
+      </p>
+
+      <div class="mt-12 space-y-3 text-[15px]">
+        <a href="mailto:shayanalibuilds@gmail.com" class="link serif text-2xl md:text-3xl inline-block fx" style="--d:100">shayanalibuilds@gmail.com</a>
+        <p class="mono text-[11px]">
+          <a href="#" class="link fx" style="--d:160">GitHub — shayanalibuilds ↗</a>
+          <span class="text-muted mx-2">·</span>
+          <a href="#work" class="link fx" style="--d:220">Start with school-management ↗</a>
+        </p>
       </div>
     </section>
   </main>
 
-  <footer class="bg-ink px-5 py-7 text-paper lg:px-8">
-    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 font-mono text-xs uppercase tracking-widest text-paper/60 sm:flex-row">
-      <span>© 2026 Shayan Ali Jalbani · Sehwan, Pakistan</span>
-      <span>Tailwind + Alpine · one file</span>
+  <footer class="relative z-10 max-w-3xl mx-auto px-6 md:px-0 border-t border-line py-10">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mono text-[10.5px] text-muted">
+      <p>© <span id="year"></span> Shayan Ali Jalbani · Sehwan, Pakistan</p>
+      <p>Tailwind · one file, no framework</p>
     </div>
   </footer>
 
-  <style>[x-cloak]{display:none !important}</style>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    /* ---------- universal text splitter ---------- */
+    function splitChars(el, stagger, masked) {
+      const text = (el.dataset.text || el.textContent).trim();
+      el.setAttribute('aria-label', el.getAttribute('aria-label') || text);
+      el.innerHTML = '';
+      const wrap = document.createElement('span');
+      wrap.setAttribute('aria-hidden', 'true');
+      const words = text.split(' ');
+      let idx = 0;
+      words.forEach((word, wi) => {
+        [...word].forEach(c => {
+          if (masked) {
+            const mw = document.createElement('span'); mw.className = 'mw';
+            const mi = document.createElement('span'); mi.className = 'mi';
+            mi.style.setProperty('--d', idx * stagger);
+            mi.textContent = c;
+            mw.appendChild(mi);
+            wrap.appendChild(mw);
+          } else {
+            const s = document.createElement('span'); s.className = 'ch';
+            s.style.setProperty('--d', idx * stagger);
+            s.textContent = c;
+            wrap.appendChild(s);
+          }
+          idx++;
+        });
+        if (wi < words.length - 1) wrap.appendChild(document.createTextNode(' '));
+      });
+      el.appendChild(wrap);
+    }
+
+    function splitWords(el, stagger) {
+      const text = el.textContent.trim();
+      el.setAttribute('aria-label', text);
+      const wrap = document.createElement('span');
+      wrap.setAttribute('aria-hidden', 'true');
+      text.split(/\s+/).forEach((w, i) => {
+        const s = document.createElement('span');
+        s.className = 'pw';
+        s.style.setProperty('--d', i * stagger);
+        s.textContent = w;
+        wrap.appendChild(s);
+        wrap.appendChild(document.createTextNode(' '));
+      });
+      el.innerHTML = '';
+      el.appendChild(wrap);
+    }
+
+    document.querySelectorAll('[data-chars]').forEach(el => splitChars(el, 22, false));
+    document.querySelectorAll('[data-mask-chars]').forEach(el => splitChars(el, 26, true));
+    document.querySelectorAll('[data-words]').forEach(el => splitWords(el, 16));
+
+    /* toolkit */
+    const tools = ['Laravel','PHP','Livewire','FilamentPHP','Blade','Alpine','Tailwind','Inertia','Vue','React','Next.js'];
+    const tk = document.getElementById('toolkit');
+    tools.forEach((t, i) => {
+      const row = document.createElement('div');
+      row.className = 'tk-row fx flex items-baseline gap-5 py-4 border-b border-line -mx-4 px-4 md:-mx-6 md:px-6';
+      row.style.setProperty('--d', i * 45);
+      row.innerHTML = `<span class="mono text-[10.5px] text-muted w-8 flex-shrink-0">${String(i+1).padStart(2,'0')}</span>
+                       <span class="mono text-[13px] uppercase tracking-wider">${t}</span>`;
+      tk.appendChild(row);
+    });
+
+    /* ---------- reveal triggers ---------- */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('main > section').forEach(s => io.observe(s));
+
+    /* hero plays on load */
+    requestAnimationFrame(() => setTimeout(() => document.getElementById('hero').classList.add('in'), 90));
+
+    /* ---------- theme ---------- */
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (stored ? stored === 'dark' : prefersDark) root.classList.add('dark');
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    /* nav border on scroll */
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      nav.classList.toggle('border-line', window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
