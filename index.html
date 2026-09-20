@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shayan Ali Jalbani — Laravel Developer</title>
-  <meta name="description" content="Shayan Ali Jalbani — Laravel developer in Sehwan, Pakistan. Role-aware admin panels, public portals and CMS tools with the TALL stack and Filament, covered in tests.">
+  <meta name="description" content="Shayan Ali Jalbani — Laravel developer in Sindh, Pakistan. Role-aware admin panels, public portals and CMS tools with the TALL stack and Filament, covered in tests.">
+  <script>
+    (function () {
+      var key = 'theme';
+      var stored = localStorage.getItem(key);
+      var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.classList.toggle('dark', dark);
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,6 +119,8 @@
     .row:hover h3 { color: var(--accent); }
     .row .arw { opacity: 0; transform: translateX(-5px); transition: opacity .25s ease, transform .25s ease; }
     .row:hover .arw { opacity: 1; transform: none; }
+    .hi { width: 14px; height: 14px; display: inline-block; flex-shrink: 0; }
+    .hi-text { width: 0.9em; height: 0.9em; display: inline-block; vertical-align: -0.12em; margin-left: .28em; }
 
     .tk-row { transition: background-color .3s ease, color .25s ease; }
     .tk-row:hover { background: var(--tint); color: var(--accent); }
@@ -172,19 +182,19 @@
       </h1>
 
       <p class="mt-9 text-[17px] leading-[1.75] text-muted max-w-[52ch]" data-words>
-        I'm Shayan Ali Jalbani, a Laravel developer in Sehwan, Pakistan. I build role-aware admin panels, public portals, and CMS tools with the TALL stack and Filament — then cover them with tests.
+        I'm Shayan Ali Jalbani, a Laravel developer in Sindh, Pakistan. I build role-aware admin panels, public portals, and CMS tools with the TALL stack and Filament — then cover them with tests.
       </p>
 
       <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-[15px]">
-        <a href="#work" class="link font-medium fx" style="--d:520">View work ↘</a>
-        <a href="#contact" class="link font-medium fx" style="--d:600">Get in touch ↗</a>
+        <a href="#work" class="link font-medium fx inline-flex items-center" style="--d:520">View work <svg class="hi-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/></svg></a>
+        <a href="#contact" class="link font-medium fx inline-flex items-center" style="--d:600">Get in touch <svg class="hi-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
       </div>
 
       <!-- profile band: fluid flex-wrap -->
       <div class="mt-20 pt-6 border-t border-line flex flex-wrap items-baseline gap-x-10 gap-y-4 mono text-[10.5px] uppercase tracking-wider text-muted">
         <div class="fx" style="--d:700">Profile_001 · 2026</div>
         <div class="fx" style="--d:760">SAJ — Laravel dev</div>
-        <div class="fx" style="--d:820">Sehwan / Pakistan</div>
+        <div class="fx" style="--d:820">Sindh, Pakistan</div>
         <div class="fx" style="--d:880">✳ Tests first, then ship</div>
       </div>
     </section>
@@ -211,7 +221,7 @@
       </p>
 
       <div class="mt-14 border-t border-line">
-        <a href="#" class="row group block py-9 md:py-11 -mx-4 px-4 md:-mx-6 md:px-6 border-b border-line fx" style="--d:0">
+        <div class="row group block py-9 md:py-11 -mx-4 px-4 md:-mx-6 md:px-6 border-b border-line fx" style="--d:0">
           <div class="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12">
             <div class="md:w-[150px] flex-shrink-0">
               <p class="mono text-[10.5px] uppercase tracking-wider text-muted">01 / Education</p>
@@ -220,16 +230,20 @@
             <div class="flex-1">
               <div class="flex items-baseline gap-3">
                 <h3 class="serif text-3xl md:text-[34px]" data-mask-chars data-text="School Management"></h3>
-                <span class="arw text-accent text-base">↗</span>
+                <a href="https://myschool.wasmer.app/" target="_blank" rel="noopener noreferrer" class="arw text-accent" aria-label="Open school management live site"><svg class="hi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
               </div>
               <p class="mono text-[11px] text-muted mt-3">Laravel 13 · Filament v5 · Livewire 4</p>
               <p class="mt-4 text-muted leading-relaxed max-w-[50ch] text-[15px]">
                 Role-separated system for admins, teachers, and parents, plus a public portal that needs no account. Attendance and exams by class, CSV in/out, EasyPaisa / JazzCash, fail-closed scoping, 255 passing tests.
               </p>
-              <p class="mt-5 mono text-[11px]"><span class="link">Live demo</span> <span class="text-muted">·</span> <span class="link">Source</span></p>
+              <p class="mt-5 mono text-[11px]">
+                <a href="https://myschool.wasmer.app/" target="_blank" rel="noopener noreferrer" class="link">Live demo</a>
+                <span class="text-muted">·</span>
+                <a href="https://github.com/shayanalibuilds/school-management" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+              </p>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </section>
 
@@ -246,11 +260,15 @@
           <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-12">
             <p class="mono text-[10.5px] uppercase tracking-wider text-accent md:w-[150px] flex-shrink-0">In progress</p>
             <div class="flex-1">
-              <h3 class="text-[17px] font-medium">Content Management</h3>
+              <h3 class="text-[17px] font-medium">Jarvis</h3>
               <p class="text-muted text-[14.5px] leading-relaxed mt-2 max-w-[50ch]">
                 Livewire 4 Volt + Flux UI admin, SQLite default, Pest / Larastan / Pint / Rector on every push.
               </p>
-              <p class="mt-4 mono text-[11px]"><span class="link">Live demo</span> <span class="text-muted">·</span> <span class="link">Open repo</span></p>
+              <p class="mt-4 mono text-[11px]">
+                <a href="https://myjarvis.wasmer.app" target="_blank" rel="noopener noreferrer" class="link">Live demo</a>
+                <span class="text-muted">·</span>
+                <a href="https://github.com/shayanalibuilds/jarvis" target="_blank" rel="noopener noreferrer" class="link">Open repo</a>
+              </p>
             </div>
           </div>
         </div>
@@ -261,9 +279,11 @@
             <div class="flex-1">
               <h3 class="text-[17px] font-medium">This portfolio</h3>
               <p class="text-muted text-[14.5px] leading-relaxed mt-2 max-w-[50ch]">
-                Single-file Tailwind site. Honest work, Sehwan on the card, ready for any product team.
+                Single-file Tailwind site. Honest work, Sindh, Pakistan on the card, ready for any product team.
               </p>
-              <p class="mt-4 mono text-[11px]"><span class="link">Open repo</span></p>
+              <p class="mt-4 mono text-[11px]">
+                <a href="https://github.com/shayanalibuilds/portfolio" target="_blank" rel="noopener noreferrer" class="link">Open repo</a>
+              </p>
             </div>
           </div>
         </div>
@@ -278,7 +298,7 @@
         <span class="block" data-mask-chars data-text="I ship with."></span>
       </h2>
       <p class="mt-7 text-muted text-[15.5px] leading-relaxed max-w-[46ch]" data-words>
-        Used on school-management and content-management — not a wish list.
+        Used on school-management and jarvis — not a wish list.
       </p>
 
       <div class="mt-12 border-t border-line" id="toolkit">
@@ -314,7 +334,7 @@
         <span class="fx px-3 py-1.5 border border-line" style="--d:0">Role-aware panels</span>
         <span class="fx px-3 py-1.5 border border-line" style="--d:60">Public portals</span>
         <span class="fx px-3 py-1.5 border border-line" style="--d:120">Tests in CI</span>
-        <span class="fx text-muted" style="--d:180">Sehwan, Sindh · Pakistan ↘</span>
+        <span class="fx text-muted inline-flex items-center gap-1.5" style="--d:180"><svg class="hi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg> Sindh, Pakistan</span>
       </div>
     </section>
 
@@ -327,15 +347,15 @@
         <span class="block italic text-accent" data-mask-chars data-text="ships."></span>
       </h2>
       <p class="mt-8 text-muted text-[16px] leading-relaxed max-w-[48ch]" data-words>
-        Based in Sehwan, Pakistan · remote-friendly. If your team needs custom software, admin panels, or a public + authenticated product on Laravel, I would like to hear from you.
+        Based in Sindh, Pakistan · remote-friendly. If your team needs custom software, admin panels, or a public + authenticated product on Laravel, I would like to hear from you.
       </p>
 
       <div class="mt-12 space-y-3 text-[15px]">
         <a href="mailto:shayanalibuilds@gmail.com" class="link serif text-2xl md:text-3xl inline-block fx" style="--d:100">shayanalibuilds@gmail.com</a>
         <p class="mono text-[11px]">
-          <a href="#" class="link fx" style="--d:160">GitHub — shayanalibuilds ↗</a>
+          <a href="https://github.com/shayanalibuilds" target="_blank" rel="noopener noreferrer" class="link fx inline-flex items-center" style="--d:160">GitHub — shayanalibuilds <svg class="hi-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
           <span class="text-muted mx-2">·</span>
-          <a href="#work" class="link fx" style="--d:220">Start with school-management ↗</a>
+          <a href="#work" class="link fx inline-flex items-center" style="--d:220">Start with school-management <svg class="hi-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/></svg></a>
         </p>
       </div>
     </section>
@@ -343,7 +363,7 @@
 
   <footer class="relative z-10 max-w-3xl mx-auto px-6 md:px-0 border-t border-line py-10">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mono text-[10.5px] text-muted">
-      <p>© <span id="year"></span> Shayan Ali Jalbani · Sehwan, Pakistan</p>
+      <p>© <span id="year"></span> Shayan Ali Jalbani · Sindh, Pakistan</p>
       <p>Tailwind · one file, no framework</p>
     </div>
   </footer>
@@ -425,14 +445,16 @@
     /* hero plays on load */
     requestAnimationFrame(() => setTimeout(() => document.getElementById('hero').classList.add('in'), 90));
 
-    /* ---------- theme ---------- */
+    /* ---------- theme (class already set in <head> before first paint) ---------- */
     const root = document.documentElement;
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (stored ? stored === 'dark' : prefersDark) root.classList.add('dark');
+    const themeMq = window.matchMedia('(prefers-color-scheme: dark)');
     document.getElementById('themeToggle').addEventListener('click', () => {
-      root.classList.toggle('dark');
-      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+      const next = root.classList.toggle('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', next);
+    });
+    themeMq.addEventListener('change', (e) => {
+      if (localStorage.getItem('theme')) return;
+      root.classList.toggle('dark', e.matches);
     });
 
     /* nav border on scroll */
