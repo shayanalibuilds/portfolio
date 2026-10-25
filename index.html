@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shayan Ali Jalbani — Laravel Developer</title>
-    <meta name="description" content="Shayan Ali Jalbani — Laravel developer in Sindh, Pakistan. Role-aware admin panels and public portals with the TALL stack and Filament, covered in tests.">
+    <meta name="description" content="Shayan Ali Jalbani — Laravel developer in Sindh, Pakistan. TALL stack + FilamentPHP, test-driven with Pest. Open to junior and remote roles.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shayan Ali Jalbani — Laravel Developer">
+    <meta property="og:description" content="TALL stack + FilamentPHP · Test-driven (Pest) · Open to junior and remote roles.">
+    <meta property="og:url" content="https://shayanalibuilds.wasmer.app/">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23161412'/%3E%3Ctext x='7' y='23' font-family='monospace' font-size='18' fill='%23FAF9F6'%3ES%3C/text%3E%3Ccircle cx='25' cy='22' r='2.5' fill='%23D81F26'/%3E%3C/svg%3E">
     <script>
     (function () {
       var key = 'theme';
@@ -62,6 +68,7 @@
     ::-webkit-scrollbar-thumb { background: var(--line); }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
     .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
     .mono { font-family: 'JetBrains Mono', monospace; }
     section { scroll-margin-top: 84px; }
@@ -146,8 +153,8 @@
   <body class="font-sans antialiased">
 
     <!-- NAV -->
-    <header class="fixed top-0 inset-x-0 z-50" id="nav">
-      <div class="max-w-3xl mx-auto px-6 md:px-0 relative!">
+    <header class="fixed top-0 inset-x-0 z-50 border-b border-transparent transition-colors" id="nav">
+      <div class="max-w-3xl mx-auto px-6 md:px-0 relative">
         <div class="absolute inset-x-0 top-0 -bottom-5 z-10 bg-gradient-to-b from-bg via-bg/90 to-transparent"></div>
 
         <nav class="flex items-center justify-between h-16 *:z-20">
@@ -160,12 +167,22 @@
               <li><a href="#about" class="link">About</a></li>
               <li><a href="#contact" class="link">Contact</a></li>
             </ul>
+            <button id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" class="sm:hidden grid place-items-center w-8 h-8 text-muted hover:text-accent transition-colors">
+              <svg class="w-[17px] h-[17px]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </button>
             <button id="themeToggle" aria-label="Toggle theme" class="theme-btn relative grid place-items-center w-8 h-8 text-muted hover:text-accent transition-colors">
               <svg class="sun w-[15px] h-[15px]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 3v1.5m0 15V21M4.2 4.2l1 1m13.6 13.6 1 1M3 12h1.5m15 0H21M4.2 19.8l1-1m13.6-13.6 1-1"/></svg>
               <svg class="moon w-[15px] h-[15px]" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path stroke-linecap="round" d="M20 14.5A8.5 8.5 0 119.5 4a7 7 0 0010.5 10.5z"/></svg>
             </button>
           </div>
         </nav>
+        <ul id="mobileMenu" hidden class="sm:hidden relative z-20 pb-5 space-y-3 text-[15px]">
+          <li><a href="#work" class="link">Work</a></li>
+          <li><a href="#now" class="link">Now</a></li>
+          <li><a href="#stack" class="link">Stack</a></li>
+          <li><a href="#about" class="link">About</a></li>
+          <li><a href="#contact" class="link">Contact</a></li>
+        </ul>
       </div>
     </header>
 
@@ -175,16 +192,16 @@
       <section id="hero" class="pt-40 md:pt-52 pb-28 md:pb-36">
         <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted flex items-center gap-2.5" data-chars>
           <span class="dot inline-block w-1.5 h-1.5 bg-accent flex-none"></span>
-          Open to teams that ship real products
+          Open to junior and remote roles
         </p>
 
         <h1 class="serif mt-8 text-[3rem] sm:text-6xl md:text-[4.6rem] leading-[1.02]">
-          <span class="block" data-mask-chars data-text="Laravel systems that"></span>
-          <span class="block italic text-accent" data-mask-chars data-text="last."></span>
+          <span class="block" data-mask-chars data-text="Laravel systems that">Laravel systems that</span>
+          <span class="block italic text-accent" data-mask-chars data-text="last.">last.</span>
         </h1>
 
         <p class="mt-9 text-[17px] leading-[1.75] text-muted max-w-[52ch]" data-words>
-          I'm Shayan Ali Jalbani, a Laravel developer in Sindh, Pakistan. I build role-aware admin panels and public portals with the TALL stack and Filament — then cover them with tests.
+          I'm Shayan Ali Jalbani, a Laravel developer in Sindh, Pakistan. I build with the TALL stack and FilamentPHP, test-driven with Pest — role-aware admin panels and public portals that are covered before they ship.
         </p>
 
         <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-[15px]">
@@ -214,11 +231,11 @@
       <section id="work" class="pt-32 md:pt-44 pb-12">
         <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>Selected work</p>
         <h2 class="serif mt-6 text-4xl md:text-[3.4rem] leading-[1.05]">
-          <span class="block" data-mask-chars data-text="Things I've"></span>
-          <span class="block" data-mask-chars data-text="shipped."></span>
+          <span class="block" data-mask-chars data-text="Things I've">Things I've</span>
+          <span class="block" data-mask-chars data-text="shipped.">shipped.</span>
         </h2>
         <p class="mt-7 text-muted text-[15.5px] leading-relaxed max-w-[46ch]" data-words>
-          Real repos only. Built for schools, ops teams, and anyone who needs an admin that non-technical people can actually use.
+          Real repos only, each with a passing test suite. Built for schools, shops, and communities that need software non-technical people can actually use.
         </p>
 
         <div class="mt-14 border-t border-line">
@@ -226,11 +243,11 @@
             <div class="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12">
               <div class="md:w-[150px] flex-shrink-0">
                 <p class="mono text-[10.5px] uppercase tracking-wider text-muted">01 / Education</p>
-                <p class="mono text-[10.5px] uppercase tracking-wider text-accent mt-1.5">● Shipped</p>
+                <p class="mono text-[10.5px] uppercase tracking-wider text-accent mt-1.5">● 255 tests · CI</p>
               </div>
               <div class="flex-1">
                 <div class="flex items-baseline gap-3">
-                  <h3 class="serif text-3xl md:text-[34px]" data-mask-chars data-text="School Management"></h3>
+                  <h3 class="serif text-3xl md:text-[34px]" data-mask-chars data-text="School Management">School Management</h3>
                   <a href="https://myschool.wasmer.app/" target="_blank" rel="noopener noreferrer" class="arw text-accent" aria-label="Open school management live site"><svg class="hi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
                 </div>
                 <p class="mono text-[11px] text-muted mt-3">Laravel 13 · Filament v5 · Livewire 4</p>
@@ -245,6 +262,49 @@
               </div>
             </div>
           </div>
+          <div class="row group block py-9 md:py-11 -mx-4 px-4 md:-mx-6 md:px-6 border-b border-line fx" style="--d:80">
+            <div class="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12">
+              <div class="md:w-[150px] flex-shrink-0">
+                <p class="mono text-[10.5px] uppercase tracking-wider text-muted">02 / Commerce</p>
+                <p class="mono text-[10.5px] uppercase tracking-wider text-accent mt-1.5">● 56/56 tests</p>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-baseline gap-3">
+                  <h3 class="serif text-3xl md:text-[34px]" data-mask-chars data-text="Northwind Market">Northwind Market</h3>
+                  <a href="https://github.com/shayanalibuilds/CodeAlpha_EcommerceStore" target="_blank" rel="noopener noreferrer" class="arw text-accent" aria-label="Open Northwind Market source"><svg class="hi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
+                </div>
+                <p class="mono text-[11px] text-muted mt-3">MongoDB · Express · React 18 · Node · Tailwind</p>
+                <p class="mt-4 text-muted leading-relaxed max-w-[50ch] text-[15px]">
+                  E-commerce store with search and filters, a persistent cart, mock checkout that decrements real stock, order history, and admin order management. JWT auth, zod validation, Jest + Supertest.
+                </p>
+                <p class="mt-5 mono text-[11px]">
+                  <a href="https://github.com/shayanalibuilds/CodeAlpha_EcommerceStore" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row group block py-9 md:py-11 -mx-4 px-4 md:-mx-6 md:px-6 border-b border-line fx" style="--d:160">
+            <div class="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12">
+              <div class="md:w-[150px] flex-shrink-0">
+                <p class="mono text-[10.5px] uppercase tracking-wider text-muted">03 / Social</p>
+                <p class="mono text-[10.5px] uppercase tracking-wider text-accent mt-1.5">● 34/34 tests</p>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-baseline gap-3">
+                  <h3 class="serif text-3xl md:text-[34px]" data-mask-chars data-text="Northwind Park">Northwind Park</h3>
+                  <a href="https://github.com/shayanalibuilds/CodeAlpha_SocialMediaPlatform" target="_blank" rel="noopener noreferrer" class="arw text-accent" aria-label="Open Northwind Park source"><svg class="hi" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
+                </div>
+                <p class="mono text-[11px] text-muted mt-3">MongoDB · Express · React · Node</p>
+                <p class="mt-4 text-muted leading-relaxed max-w-[50ch] text-[15px]">
+                  Social platform with profiles, posts, comments, likes, and follows, plus an admin role. 34 backend tests across 6 suites on an in-memory MongoDB.
+                </p>
+                <p class="mt-5 mono text-[11px]">
+                  <a href="https://github.com/shayanalibuilds/CodeAlpha_SocialMediaPlatform" target="_blank" rel="noopener noreferrer" class="link">Source</a>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -252,18 +312,18 @@
       <section id="now" class="pt-32 md:pt-44 pb-12">
         <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>Building now</p>
         <h2 class="serif mt-6 text-4xl md:text-[3.4rem] leading-[1.05]">
-          <span class="block" data-mask-chars data-text="On the"></span>
-          <span class="block" data-mask-chars data-text="bench."></span>
+          <span class="block" data-mask-chars data-text="On the">On the</span>
+          <span class="block" data-mask-chars data-text="bench.">bench.</span>
         </h2>
 
         <div class="mt-12 border-t border-line">
           <div class="row py-7 border-b border-line -mx-4 px-4 md:-mx-6 md:px-6 fx" style="--d:0">
             <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-12">
-              <p class="mono text-[10.5px] uppercase tracking-wider text-accent md:w-[150px] flex-shrink-0">In progress</p>
+              <p class="mono text-[10.5px] uppercase tracking-wider text-accent md:w-[150px] flex-shrink-0">Experiment</p>
               <div class="flex-1">
                 <h3 class="text-[17px] font-medium">Jarvis</h3>
                 <p class="text-muted text-[14.5px] leading-relaxed mt-2 max-w-[50ch]">
-                  Livewire 4 Volt + Flux UI admin, SQLite default, Pest / Larastan / Pint / Rector on every push.
+                  Personal playground on the Fission starter kit (Livewire + Flux UI), trimmed down and kept current. Pest / Larastan / Pint / Rector on every push.
                 </p>
                 <p class="mt-4 mono text-[11px]">
                   <a href="https://myjarvis.wasmer.app" target="_blank" rel="noopener noreferrer" class="link">Live demo</a>
@@ -295,11 +355,11 @@
       <section id="stack" class="pt-32 md:pt-44 pb-12">
         <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>Toolkit</p>
         <h2 class="serif mt-6 text-4xl md:text-[3.4rem] leading-[1.05]">
-          <span class="block" data-mask-chars data-text="The stack"></span>
-          <span class="block" data-mask-chars data-text="I ship with."></span>
+          <span class="block" data-mask-chars data-text="The stack">The stack</span>
+          <span class="block" data-mask-chars data-text="I ship with.">I ship with.</span>
         </h2>
         <p class="mt-7 text-muted text-[15.5px] leading-relaxed max-w-[46ch]" data-words>
-          Used on school-management and jarvis — not a wish list.
+          What my tested projects are actually built with — not a wish list.
         </p>
 
         <div class="mt-12 border-t border-line" id="toolkit">
@@ -311,13 +371,13 @@
       <section id="about" class="pt-32 md:pt-44 pb-12">
         <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>A little context</p>
         <h2 class="serif mt-6 text-4xl md:text-[3.4rem] leading-[1.05]">
-          <span class="block" data-mask-chars data-text="Technical depth."></span>
-          <span class="block italic text-accent" data-mask-chars data-text="Product empathy."></span>
+          <span class="block" data-mask-chars data-text="Technical depth.">Technical depth.</span>
+          <span class="block italic text-accent" data-mask-chars data-text="Product empathy.">Product empathy.</span>
         </h2>
 
         <div class="mt-12 space-y-6 max-w-[54ch]">
           <p class="text-[16px] leading-[1.8] text-muted" data-words>
-            I ship full-stack Laravel products: Filament and Livewire when the team needs a fast, reliable admin; Blade when a public page should stay simple; Inertia or Vue when the UI has to feel like an app.
+            Self-taught, with 2–3 years building Laravel, Livewire, and FilamentPHP apps, plus MERN projects with React. I write tests first and ship with AI. Filament and Livewire when a team needs a fast, reliable admin; Blade when a public page should stay simple.
           </p>
           <p class="text-[16px] leading-[1.8] text-muted" data-words>
             Work starts with the domain — who can see what, what must never be deleted, what a parent can look up without an account — then the panels and tests follow.
@@ -328,7 +388,7 @@
         </div>
 
         <blockquote class="mt-12 border-l-2 border-accent pl-5">
-          <p class="serif text-xl md:text-2xl leading-snug" data-mask-chars data-text="I care about the line between ‘it works’ and ‘a school admin can run it.’"></p>
+          <p class="serif text-xl md:text-2xl leading-snug" data-mask-chars data-text="I care about the line between ‘it works’ and ‘a school admin can run it.’">I care about the line between ‘it works’ and ‘a school admin can run it.’</p>
         </blockquote>
 
         <div class="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 mono text-[10.5px] uppercase tracking-wider">
@@ -343,9 +403,9 @@
       <section id="contact" class="pt-32 md:pt-44 pb-24">
         <p class="mono text-[11px] uppercase tracking-[0.18em] text-muted" data-chars>Open invitation</p>
         <h2 class="serif mt-6 text-4xl md:text-[3.6rem] leading-[1.05]">
-          <span class="block" data-mask-chars data-text="Hire a Laravel"></span>
-          <span class="block" data-mask-chars data-text="developer who"></span>
-          <span class="block italic text-accent" data-mask-chars data-text="ships."></span>
+          <span class="block" data-mask-chars data-text="Hire a Laravel">Hire a Laravel</span>
+          <span class="block" data-mask-chars data-text="developer who">developer who</span>
+          <span class="block italic text-accent" data-mask-chars data-text="ships.">ships.</span>
         </h2>
         <p class="mt-8 text-muted text-[16px] leading-relaxed max-w-[48ch]" data-words>
           Based in Sindh, Pakistan · remote-friendly. If your team needs custom software, admin panels, or a public + authenticated product on Laravel, I would like to hear from you.
@@ -355,6 +415,8 @@
           <a href="mailto:shayanalibuilds@gmail.com" class="link serif text-2xl md:text-3xl inline-block fx" style="--d:100">shayanalibuilds@gmail.com</a>
           <p class="mono text-[11px]">
             <a href="https://github.com/shayanalibuilds" target="_blank" rel="noopener noreferrer" class="link fx inline-flex items-center" style="--d:160">GitHub — shayanalibuilds <svg class="hi-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
+            <span class="text-muted mx-2">·</span>
+            <a href="https://www.linkedin.com/in/shayanalibuilds/" target="_blank" rel="noopener noreferrer" class="link fx inline-flex items-center" style="--d:190">LinkedIn <svg class="hi-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"/></svg></a>
             <span class="text-muted mx-2">·</span>
             <a href="#work" class="link fx inline-flex items-center" style="--d:220">Start with school-management <svg class="hi-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"/></svg></a>
           </p>
@@ -373,8 +435,9 @@
     /* ---------- universal text splitter ---------- */
     function splitChars(el, stagger, masked) {
       const text = (el.dataset.text || el.textContent).trim();
-      el.setAttribute('aria-label', el.getAttribute('aria-label') || text);
       el.innerHTML = '';
+      const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = text;
+      el.appendChild(sr);
       const wrap = document.createElement('span');
       wrap.setAttribute('aria-hidden', 'true');
       const words = text.split(' ');
@@ -402,8 +465,7 @@
     }
 
     function splitWords(el, stagger) {
-      const text = el.textContent.trim();
-      el.setAttribute('aria-label', text);
+      const text = el.textContent.trim().replace(/\s+/g, ' ');
       const wrap = document.createElement('span');
       wrap.setAttribute('aria-hidden', 'true');
       text.split(/\s+/).forEach((w, i) => {
@@ -415,6 +477,8 @@
         wrap.appendChild(document.createTextNode(' '));
       });
       el.innerHTML = '';
+      const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = text;
+      el.appendChild(sr);
       el.appendChild(wrap);
     }
 
@@ -423,7 +487,7 @@
     document.querySelectorAll('[data-words]').forEach(el => splitWords(el, 16));
 
     /* toolkit */
-    const tools = ['Laravel','PHP','Livewire','FilamentPHP','Blade','Alpine','Tailwind','Inertia','Vue','React','Next.js'];
+    const tools = ['Laravel','PHP','Livewire','FilamentPHP','Blade','Alpine','Tailwind','Pest','MySQL','MongoDB','Express','React','Node.js'];
     const tk = document.getElementById('toolkit');
     tools.forEach((t, i) => {
       const row = document.createElement('div');
@@ -494,10 +558,22 @@
     /* nav border on scroll */
     const nav = document.getElementById('nav');
     const onScroll = () => {
-      nav.classList.toggle('border-line', window.scrollY > 8);
+      const scrolled = window.scrollY > 8;
+      nav.style.borderBottomColor = scrolled ? 'var(--line)' : 'transparent';
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* mobile menu */
+    const menuBtn = document.getElementById('menuToggle');
+    const menu = document.getElementById('mobileMenu');
+    const setMenu = (open) => {
+      menu.hidden = !open;
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    menuBtn.addEventListener('click', () => setMenu(menu.hidden));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
     document.getElementById('year').textContent = new Date().getFullYear();
     </script>
